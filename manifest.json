@@ -1,16 +1,23 @@
 {
-  "name": "Forge — Workout Tracker",
+  "name": "Forge \u2014 Workout Tracker",
   "short_name": "Forge",
   "description": "Personal records, properly tracked.",
   "start_url": "./",
   "scope": "./",
   "id": "forge-workout-tracker",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "portrait",
-  "background_color": "#0a0a0b",
-  "theme_color": "#0a0a0b",
-  "categories": ["fitness", "health", "lifestyle"],
+  "background_color": "#141110",
+  "theme_color": "#141110",
+  "categories": [
+    "fitness",
+    "health",
+    "lifestyle"
+  ],
   "icons": [
     {
       "src": "icon-192.png",
