@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#0a0a0b">
+<meta name="theme-color" content="#141110">
 <meta name="description" content="Personal records, properly tracked.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -20,17 +20,19 @@
 
 <style>
 :root {
-  --bg: #0a0a0b;
-  --card: #131316;
-  --card-2: #1a1b1e;
-  --border: #26272b;
-  --border-strong: #3a3b40;
-  --text: #fafaf9;
-  --text-2: #9ca0a6;
-  --text-3: #5c5f64;
-  --pr: #fbbf24;
-  --pr-glow: rgba(251, 191, 36, 0.35);
-  --danger: #f87171;
+  --bg: #141110;
+  --card: #1E1A17;
+  --card-2: #272220;
+  --border: #39312B;
+  --border-strong: #4A4039;
+  --text: #EDE6DE;
+  --text-2: #9A8F84;
+  --text-3: #6B625B;
+  --pr: #FFB23E;
+  --pr-glow: rgba(255, 178, 62, 0.35);
+  --ember: #FF6A2B;
+  --steel: #6FA8C7;
+  --danger: #E5573F;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-top: env(safe-area-inset-top, 0px);
   --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
@@ -53,7 +55,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(251, 191, 36, 0.04), transparent 70%);
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255, 106, 43, 0.055), transparent 70%);
   pointer-events: none;
   z-index: -1;
 }
@@ -194,11 +196,14 @@ input[type=number] { -moz-appearance: textfield; }
   background: transparent;
   border: none;
   color: var(--text-3);
-  font-size: 22px;
   cursor: pointer;
   border-radius: 8px;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
+.exercise-row .rm-btn svg { display: block; }
 .exercise-row .rm-btn:active { background: var(--border); color: var(--text); }
 
 .name-wrap { position: relative; margin-bottom: 8px; padding-right: 32px; }
@@ -274,7 +279,7 @@ input[type=number] { -moz-appearance: textfield; }
 }
 .btn:active { transform: scale(0.985); }
 .btn:disabled { opacity: 0.5; }
-.btn-primary { background: var(--text); color: var(--bg); }
+.btn-primary { background: var(--ember); color: #1a0f08; box-shadow: 0 6px 18px rgba(255,106,43,0.22); }
 .btn-secondary { background: var(--card-2); color: var(--text); border-color: var(--border); }
 .btn-ghost { background: transparent; color: var(--text-2); height: 44px; font-weight: 500; }
 .btn-danger { background: transparent; color: var(--danger); border-color: rgba(248, 113, 113, 0.4); }
@@ -311,7 +316,7 @@ input[type=number] { -moz-appearance: textfield; }
   touch-action: manipulation;
 }
 .nav-btn svg { width: 22px; height: 22px; stroke-width: 2; }
-.nav-btn.active { color: var(--text); }
+.nav-btn.active { color: var(--ember); }
 .nav-btn:active svg { transform: scale(0.92); }
 
 .workout-item {
@@ -361,9 +366,9 @@ input[type=number] { -moz-appearance: textfield; }
   border: 1px solid var(--border);
 }
 .exercise-pill.has-pr {
-  background: rgba(251, 191, 36, 0.10);
+  background: rgba(255, 178, 62, 0.10);
   color: var(--pr);
-  border-color: rgba(251, 191, 36, 0.3);
+  border-color: rgba(255, 178, 62, 0.3);
   font-weight: 600;
 }
 .exercise-pill .num { font-family: var(--font-mono); font-weight: 600; margin-left: 2px; }
@@ -430,8 +435,8 @@ input[type=number] { -moz-appearance: textfield; }
   font-size: 10.5px;
   font-weight: 700;
   color: var(--pr);
-  background: rgba(251, 191, 36, 0.12);
-  border: 1px solid rgba(251, 191, 36, 0.35);
+  background: rgba(255, 178, 62, 0.12);
+  border: 1px solid rgba(255, 178, 62, 0.35);
   padding: 3px 7px;
   border-radius: 6px;
   text-transform: uppercase;
@@ -532,8 +537,8 @@ input[type=number] { -moz-appearance: textfield; }
   margin-bottom: 10px;
 }
 .detail-exercise.has-pr {
-  border-color: rgba(251, 191, 36, 0.4);
-  background: linear-gradient(180deg, rgba(251, 191, 36, 0.04), transparent);
+  border-color: rgba(255, 178, 62, 0.4);
+  background: linear-gradient(180deg, rgba(255, 178, 62, 0.04), transparent);
 }
 .detail-exercise .ex-name {
   font-family: var(--font-display);
@@ -573,9 +578,9 @@ input[type=number] { -moz-appearance: textfield; }
   transition: all 0.15s;
 }
 .exercise-pill-btn.active {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background: var(--ember);
+  color: #1a0f08;
+  border-color: var(--ember);
 }
 
 .chart-wrap {
@@ -588,6 +593,7 @@ input[type=number] { -moz-appearance: textfield; }
   border-radius: 18px;
 }
 .chart-wrap.tall { height: 280px; }
+.chart-wrap.short { height: 200px; }
 
 .action-stack { padding: 8px 16px; display: flex; flex-direction: column; gap: 8px; }
 
@@ -625,7 +631,7 @@ input[type=number] { -moz-appearance: textfield; }
   pointer-events: none;
   box-shadow: 0 8px 30px rgba(0,0,0,0.4);
 }
-.toast.gold { color: var(--pr); border-color: rgba(251, 191, 36, 0.5); }
+.toast.gold { color: var(--pr); border-color: rgba(255, 178, 62, 0.5); }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 .target-row {
@@ -647,6 +653,57 @@ input[type=number] { -moz-appearance: textfield; }
 }
 .target-row .number-input { width: 150px; flex-shrink: 0; }
 
+
+/* --- exercise type selector --- */
+.type-seg { display:flex; gap:6px; margin-bottom:12px; }
+.type-seg button { flex:1; background:var(--bg); border:1px solid var(--border); color:var(--text-3);
+  font-family:var(--font-body); font-weight:700; font-size:11.5px; letter-spacing:0.04em;
+  padding:9px 4px; border-radius:9px; cursor:pointer; text-transform:uppercase; transition:all .15s; touch-action:manipulation; }
+.type-seg button.active { color:var(--text); border-color:var(--border-strong); background:var(--card); }
+.type-seg button[data-t="strength"].active { color:var(--ember); border-color:rgba(255,106,43,.5); }
+.type-seg button[data-t="cardio"].active { color:var(--steel); border-color:rgba(111,168,199,.5); }
+
+/* --- max-attempt toggle --- */
+.max-toggle { display:flex; align-items:center; gap:10px; margin-top:10px; padding:10px 12px;
+  background:var(--bg); border:1px solid var(--border); border-radius:10px; cursor:pointer; user-select:none; }
+.max-toggle .box { width:22px; height:22px; border-radius:6px; border:2px solid var(--border-strong);
+  flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all .15s; color:#1a0f08; }
+.max-toggle .box svg { display:none; }
+.max-toggle.on .box { background:var(--pr); border-color:var(--pr); }
+.max-toggle.on .box svg { display:block; }
+.max-toggle .lab { font-size:13px; font-weight:600; color:var(--text-2); }
+.max-toggle .lab small { display:block; font-size:11px; color:var(--text-3); font-weight:500; }
+.max-toggle.on .lab { color:var(--pr); }
+
+.field.full { grid-column:1 / -1; }
+
+/* --- history search --- */
+.search-wrap { position:relative; margin:0 16px 14px; }
+.search-wrap svg { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--text-3); pointer-events:none; }
+.search-input { width:100%; background:var(--card); border:1px solid var(--border); color:var(--text);
+  font-family:var(--font-body); font-size:15px; font-weight:500; padding:13px 14px 13px 42px; border-radius:12px; outline:none; -webkit-appearance:none; }
+.search-input:focus { border-color:var(--border-strong); }
+.search-input::placeholder { color:var(--text-3); }
+
+/* --- kind tags --- */
+.kind-tag { font-family:var(--font-mono); font-size:9px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+  padding:2px 6px; border-radius:5px; margin-right:6px; vertical-align:middle; border:1px solid; }
+.kind-tag.cardio { color:var(--steel); border-color:rgba(111,168,199,.4); background:rgba(111,168,199,.08); }
+.kind-tag.bw { color:var(--text-2); border-color:var(--border-strong); }
+.kind-tag.max { color:var(--pr); border-color:rgba(255,178,62,.45); background:rgba(255,178,62,.1); }
+.exercise-pill.cardio { background:rgba(111,168,199,.08); color:var(--steel); border-color:rgba(111,168,199,.28); }
+.detail-exercise.cardio { border-color:rgba(111,168,199,.3); background:linear-gradient(180deg, rgba(111,168,199,.05), transparent); }
+
+/* --- weekly target progress --- */
+.wk-bar { height:8px; border-radius:5px; background:var(--bg); border:1px solid var(--border); overflow:hidden; margin-top:14px; }
+.wk-bar .fill { height:100%; border-radius:5px; background:linear-gradient(90deg, var(--ember), var(--pr)); transition:width .5s ease; }
+
+/* --- cardio summary --- */
+.cardio-row { display:flex; justify-content:space-between; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--border); }
+.cardio-row:last-child { border-bottom:none; }
+.cardio-row .nm { font-family:var(--font-display); font-weight:600; font-size:16px; }
+.cardio-row .val { font-family:var(--font-mono); font-size:13px; color:var(--text-2); font-weight:500; }
+
 @media (min-width: 600px) { .view-header h1 { font-size: 36px; } }
 </style>
 </head>
@@ -654,7 +711,7 @@ input[type=number] { -moz-appearance: textfield; }
 <div id="app"></div>
 <nav id="bottom-nav"></nav>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
 'use strict';
 
@@ -672,6 +729,8 @@ let currentView = 'log';
 let editingWorkoutId = null;
 let logDraft = null;
 let progressSelectedExercise = null;
+let progressQuery = '';
+let historyQuery = '';
 
 // ============================================================
 // PERSISTENCE
@@ -681,10 +740,16 @@ function loadState() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw);
-      state.workouts = Array.isArray(parsed.workouts) ? parsed.workouts : [];
+      state.workouts = migrateWorkouts(Array.isArray(parsed.workouts) ? parsed.workouts : []);
       state.settings = Object.assign({ weeklyTarget: 3 }, parsed.settings || {});
+      return;
     }
   } catch (e) { console.warn('Load failed:', e); }
+  // First run (no saved data): seed with the embedded backup so the app opens populated.
+  try {
+    state.workouts = migrateWorkouts(SEED_DATA.workouts || []);
+    state.settings = Object.assign({ weeklyTarget: 3 }, SEED_DATA.settings || {});
+  } catch (e) { state.workouts = []; }
 }
 function saveState() {
   try {
@@ -776,6 +841,139 @@ function daysSince(iso) {
 }
 
 // ============================================================
+// EXERCISE TYPES  (strength | bodyweight | cardio)
+// ============================================================
+const SEED_DATA = {"workouts":[{"id":"monal83kbp083s","date":"2026-05-01","duration":50,"bodyweight":66,"exercises":[{"name":"Leg Press","weight":85,"reps":12},{"name":"Leg Extension","weight":45,"reps":16}]},{"id":"moyhuejzf6d2zx","date":"2026-05-09","duration":45,"bodyweight":65,"exercises":[{"name":"Bench Press","weight":45,"reps":10},{"name":"Chest Butterfly","weight":40,"reps":9},{"name":"Tricep Pulldowns","weight":40,"reps":19},{"name":"Bicep Cable Curl","weight":15,"reps":16}]},{"id":"mp14876moyboci","date":"2026-05-11","duration":70,"bodyweight":66,"exercises":[{"name":"Lat Pulldowns","weight":50,"reps":10},{"name":"Cable Row","weight":30,"reps":19},{"name":"Shrugs","weight":16,"reps":13},{"name":"Lateral Raises","weight":6,"reps":12},{"name":"Neck Plate Curls","weight":5,"reps":10}]},{"id":"mp2ropewh82evr","date":"2026-05-12","duration":30,"bodyweight":66.5,"exercises":[{"name":"Leg Flexion","weight":30,"reps":20},{"name":"Adducter Machine","weight":40,"reps":30},{"name":"Leg Press","weight":77,"reps":12}]},{"id":"mp5p8ygjhkz8u5","date":"2026-05-14","duration":65,"bodyweight":64.5,"exercises":[{"name":"Bench Press","weight":40,"reps":20},{"name":"Chest Cable Butterfly","weight":30,"reps":9},{"name":"Overhead Tricep Extensions","weight":45,"reps":8},{"name":"Bicep Cable Curl","weight":15,"reps":17},{"name":"Tricep Pulldowns","weight":40,"reps":13},{"name":"Shoulder Dumbbell Raises","weight":7,"reps":19}]},{"id":"mp8kxzcnys6dit","date":"2026-05-16","duration":45,"bodyweight":66,"exercises":[{"name":"Lat Pulldowns","weight":50,"reps":12},{"name":"Cable Row","weight":25,"reps":19},{"name":"Shrugs","weight":16,"reps":17},{"name":"Ab Machine","weight":35,"reps":23}]},{"id":"mpb6r2p2ll6mc1","date":"2026-05-18","duration":null,"bodyweight":65.5,"exercises":[{"name":"Bench Press","weight":45,"reps":9},{"name":"Chest Butterfly","weight":40,"reps":10},{"name":"Bicep Cable Curl","weight":20,"reps":11},{"name":"Overhead Tricep Extensions","weight":40,"reps":18},{"name":"Tricep Pulldowns","weight":40,"reps":15},{"name":"Ab Machine","weight":40,"reps":15},{"name":"Shoulder Machine Raises","weight":30,"reps":15}]},{"id":"mpighkl2uoih02","date":"2026-05-23","duration":40,"bodyweight":65.5,"exercises":[{"name":"Bench Press","weight":70,"reps":1},{"name":"Bench Press","weight":50,"reps":9},{"name":"Chest Butterfly","weight":40,"reps":6},{"name":"Overhead Tricep Extensions","weight":40,"reps":20},{"name":"Tricep Pulldowns","weight":45,"reps":9},{"name":"Bicep Cable Curl","weight":20,"reps":14}]},{"id":"mplcgy52pa9r3r","date":"2026-05-20","duration":null,"bodyweight":65.5,"exercises":[{"name":"Bench Press","weight":60,"reps":1}]},{"id":"mprjquntrhbbsu","date":"2026-05-29","duration":60,"bodyweight":67.5,"exercises":[{"name":"Chest Butterfly","weight":40,"reps":11},{"name":"Bench Press","weight":45,"reps":13},{"name":"Overhead Tricep Extensions","weight":45,"reps":14},{"name":"Bicep Cable Curl","weight":20,"reps":12},{"name":"Tricep Pulldowns","weight":40,"reps":17}]},{"id":"mpsd2xom79e8k8","date":"2026-05-26","duration":120,"bodyweight":67.5,"exercises":[{"name":"Bike","weight":1,"reps":1}]},{"id":"mpv7em93cgmmm7","date":"2026-05-31","duration":90,"bodyweight":66.5,"exercises":[{"name":"Rear Delt Fly Machine","weight":25,"reps":11},{"name":"Lat Pulldowns","weight":50,"reps":10},{"name":"Shoulder Machine Raises","weight":30,"reps":16},{"name":"Shrugs","weight":16,"reps":19},{"name":"Lateral Raises","weight":8,"reps":23},{"name":"Leg Raises (Abs)","weight":65,"reps":10},{"name":"Ab Machine","weight":35,"reps":18}]},{"id":"mpvgzglxv3jd7b","date":"2026-06-01","duration":60,"bodyweight":67,"exercises":[{"name":"Bench Press","weight":70,"reps":1},{"name":"Bench Press","weight":50,"reps":7},{"name":"Chest Butterfly","weight":40,"reps":13},{"name":"Tricep Pulldowns","weight":40,"reps":16},{"name":"Bicep Cable Curl","weight":20,"reps":15},{"name":"Overhead Tricep Extensions","weight":45,"reps":15}]},{"id":"mpwuo1hb671afo","date":"2026-06-02","duration":55,"bodyweight":67,"exercises":[{"name":"Abducter Machine","weight":40,"reps":24},{"name":"Adducter Machine","weight":55,"reps":20},{"name":"Leg Extension","weight":40,"reps":15},{"name":"Leg Flexion","weight":35,"reps":17},{"name":"Leg Press","weight":77,"reps":16}]},{"id":"mpzjgoukcaj0d9","date":"2026-06-04","duration":90,"bodyweight":67.5,"exercises":[{"name":"Chest Cable Butterfly","weight":30,"reps":15},{"name":"Bench Press","weight":50,"reps":10},{"name":"Bench Press","weight":70,"reps":1},{"name":"Overhead Tricep Extensions","weight":45,"reps":16},{"name":"Bicep Cable Curl","weight":20,"reps":15},{"name":"Tricep Pulldowns","weight":40,"reps":22},{"name":"Shrugs","weight":18,"reps":19},{"name":"Lateral Raises","weight":7,"reps":19},{"name":"Knee Leg Raises","weight":1,"reps":22}]},{"id":"mqchv1vphiiay6","date":"2026-06-11","duration":65,"bodyweight":66.5,"exercises":[{"name":"Chest Butterfly","weight":40,"reps":13},{"name":"Lateral Raises","weight":6,"reps":20},{"name":"Bench Press","weight":50,"reps":12},{"name":"Shoulder Machine Raises","weight":35,"reps":10},{"name":"Tricep Pulldowns","weight":45,"reps":12},{"name":"Bicep Cable Curl","weight":20,"reps":16},{"name":"Overhead Tricep Extensions","weight":50,"reps":12},{"name":"Leg Raises (Abs)","weight":66.5,"reps":16}]},{"id":"mqcjpjwslbiqs3","date":"2026-06-13","duration":60,"bodyweight":68,"exercises":[{"name":"Lat Pulldowns","weight":50,"reps":11},{"name":"Rear Delt Fly Machine","weight":30,"reps":12},{"name":"Pullups","weight":0,"reps":5},{"name":"Cable Row","weight":30,"reps":10},{"name":"Shrugs","weight":16,"reps":15},{"name":"Lateral Raises","weight":6,"reps":15},{"name":"Shoulder Machine Raises","weight":35,"reps":12}]}],"settings":{"weeklyTarget":3}};
+const CARDIO_NAMES = new Set(['bike','run','running','cycling','cycle','canoe','canoeing','kayak','kayaking','swim','swimming','walk','walking','jog','jogging','elliptical','treadmill','rowing machine','rower','erg','skierg','stairmaster','hike','hiking']);
+function classifyName(name) {
+  const n = (name || '').trim().toLowerCase();
+  if (CARDIO_NAMES.has(n)) return 'cardio';
+  if (/(pull[\s-]?up|chin[\s-]?up|push[\s-]?up|\bdips?\b|leg raise|knee raise|hanging|muscle[\s-]?up)/.test(n)) return 'bodyweight';
+  return 'strength';
+}
+// Upgrade legacy / imported entries (no `type`) into typed entries.
+function migrateExercise(ex, sessionDuration) {
+  if (ex && ex.type) return ex;
+  const t = classifyName(ex.name);
+  if (t === 'cardio') return { type: 'cardio', name: ex.name, distance: null, distanceUnit: 'km', durationMin: (sessionDuration || null) };
+  if (t === 'bodyweight') return { type: 'bodyweight', name: ex.name, reps: parseInt(ex.reps, 10) || 0, addedWeight: 0 };
+  return { type: 'strength', name: ex.name, weight: parseFloat(ex.weight) || 0, reps: parseInt(ex.reps, 10) || 0, isMax: (parseInt(ex.reps, 10) === 1) };
+}
+function migrateWorkouts(list) {
+  if (!Array.isArray(list)) return [];
+  return list.map(w => Object.assign({}, w, {
+    exercises: (w.exercises || []).map(ex => migrateExercise(ex, w.duration))
+  }));
+}
+function normalizeExFields(ex) {
+  if (ex.type === 'cardio') {
+    if (ex.distance === undefined) ex.distance = null;
+    if (!ex.distanceUnit) ex.distanceUnit = 'km';
+    if (ex.durationMin === undefined) ex.durationMin = null;
+  } else if (ex.type === 'bodyweight') {
+    if (ex.addedWeight === undefined || ex.addedWeight === null) ex.addedWeight = 0;
+    if (ex.reps === undefined) ex.reps = '';
+  } else {
+    if (ex.weight === undefined) ex.weight = '';
+    if (ex.reps === undefined) ex.reps = '';
+    if (ex.isMax === undefined) ex.isMax = false;
+  }
+}
+function blankExercise() { return { type: 'strength', name: '', reps: '', weight: '', isMax: false }; }
+
+// Effective load for ranking + e1RM. Cardio -> 0. Bodyweight -> bodyweight + added.
+function exLoad(ex, bodyweight) {
+  if (!ex || ex.type === 'cardio') return 0;
+  if (ex.type === 'bodyweight') return (parseFloat(bodyweight) || 0) + (parseFloat(ex.addedWeight) || 0);
+  return parseFloat(ex.weight) || 0;
+}
+function exE1RM(ex, bodyweight) {
+  if (!ex || ex.type === 'cardio') return 0;
+  const load = exLoad(ex, bodyweight);
+  const reps = parseInt(ex.reps, 10) || 0;
+  if (load <= 0 || reps <= 0) return 0;
+  if (reps === 1) return load;            // a true single IS the 1RM, not weight*1.033
+  return epley(load, Math.min(reps, 12)); // 1RM estimates are unreliable beyond ~12 reps
+}
+// Performance score for progression + PR detection (arbitrary units, NOT a kg 1RM claim).
+// Uncapped weight*(1+reps/30): rising load OR rising reps both increase it.
+function perfScore(ex, bodyweight) {
+  if (!ex || ex.type === 'cardio') return 0;
+  const load = exLoad(ex, bodyweight);
+  const reps = parseInt(ex.reps, 10) || 0;
+  if (load <= 0 || reps <= 0) return 0;
+  return load * (1 + reps / 30);
+}
+// Working volume: strength (non-max) + bodyweight. Excludes cardio and 1RM singles.
+function workoutVolume(w) {
+  let v = 0;
+  for (const ex of (w.exercises || [])) {
+    if (ex.type === 'cardio') continue;
+    if (ex.type === 'strength' && ex.isMax) continue;
+    v += exLoad(ex, w.bodyweight) * (parseInt(ex.reps, 10) || 0);
+  }
+  return v;
+}
+function toKm(distance, unit) {
+  const d = parseFloat(distance) || 0;
+  if (d <= 0) return 0;
+  return unit === 'mi' ? d * 1.60934 : unit === 'm' ? d / 1000 : d;
+}
+function fmtPace(distance, unit, minutes) {
+  const km = toKm(distance, unit), m = parseFloat(minutes) || 0;
+  if (km <= 0 || m <= 0) return null;
+  const paceMin = m / km;
+  const mm = Math.floor(paceMin), ss = Math.round((paceMin - mm) * 60);
+  const adjMm = ss === 60 ? mm + 1 : mm, adjSs = ss === 60 ? 0 : ss;
+  return adjMm + ':' + String(adjSs).padStart(2, '0') + ' /km';
+}
+function fmtDuration(totalMin) {
+  const t = Math.round(parseFloat(totalMin) || 0);
+  const h = Math.floor(t / 60), m = t % 60;
+  return h > 0 ? (h + 'h ' + m + 'm') : (m + 'm');
+}
+function cardioSummary() {
+  const map = {};
+  for (const w of state.workouts) for (const ex of (w.exercises || [])) {
+    if (ex.type !== 'cardio') continue;
+    const k = normalizeName(ex.name);
+    if (!map[k]) map[k] = { name: ex.name, sessions: 0, distKm: 0, hasDist: false, time: 0 };
+    map[k].sessions++;
+    if (ex.distance != null) { map[k].distKm += toKm(ex.distance, ex.distanceUnit); map[k].hasDist = true; }
+    if (ex.durationMin != null) map[k].time += parseFloat(ex.durationMin) || 0;
+  }
+  return Object.values(map);
+}
+// Overall strength as an index (first qualifying session = 100). Each session, average
+// how every lift's best working score moved vs that lift's previous logged value; compound it.
+function strengthIndexSeries() {
+  const sorted = [...state.workouts].sort((a, b) => a.date.localeCompare(b.date) || (a.id || '').localeCompare(b.id || ''));
+  const last = {};
+  let index = 100;
+  const pts = [];
+  for (const w of sorted) {
+    const best = {};
+    for (const ex of (w.exercises || [])) {
+      if (ex.type === 'cardio') continue;
+      if (ex.type === 'strength' && ex.isMax) continue; // working strength only, not test singles
+      const sc = perfScore(ex, w.bodyweight);
+      if (sc <= 0) continue;
+      const k = normalizeName(ex.name);
+      if (!k) continue;
+      best[k] = Math.max(best[k] || 0, sc);
+    }
+    const keys = Object.keys(best);
+    if (!keys.length) continue;
+    const ratios = [];
+    for (const k of keys) if (last[k] > 0) ratios.push(best[k] / last[k]);
+    if (ratios.length) index *= ratios.reduce((s, x) => s + x, 0) / ratios.length;
+    for (const k of keys) last[k] = best[k];
+    pts.push({ date: w.date, index: Math.round(index * 10) / 10 });
+  }
+  return pts;
+}
+
+// ============================================================
 // DERIVED DATA
 // ============================================================
 function getWeeklyStreak() {
@@ -815,16 +1013,17 @@ function computePRs() {
   for (const w of sorted) {
     prs[w.id] = {};
     w.exercises.forEach((ex, idx) => {
+      if (ex.type === 'cardio') return;
       const key = normalizeName(ex.name);
       if (!key) return;
-      const e1 = epley(ex.weight, ex.reps);
-      if (e1 <= 0) return;
+      const sc = perfScore(ex, w.bodyweight);
+      if (sc <= 0) return;
       const prev = best[key];
       if (prev === undefined) {
-        best[key] = e1;
-      } else if (e1 > prev) {
+        best[key] = sc;
+      } else if (sc > prev) {
         prs[w.id][idx] = true;
-        best[key] = e1;
+        best[key] = sc;
       }
     });
   }
@@ -839,9 +1038,15 @@ function getExerciseHistory(name) {
       if (normalizeName(ex.name) === key) {
         out.push({
           date: w.date,
-          weight: ex.weight,
+          type: ex.type,
           reps: ex.reps,
-          e1rm: epley(ex.weight, ex.reps),
+          load: exLoad(ex, w.bodyweight),
+          e1rm: exE1RM(ex, w.bodyweight),
+          score: perfScore(ex, w.bodyweight),
+          isMax: ex.type === 'strength' && !!ex.isMax,
+          distance: ex.distance,
+          distanceUnit: ex.distanceUnit,
+          durationMin: ex.durationMin,
           workoutId: w.id,
           idx
         });
@@ -877,7 +1082,7 @@ function getMostRecentExercise(name, excludeId) {
   for (const w of sorted) {
     for (const ex of w.exercises) {
       if (normalizeName(ex.name) === key) {
-        return { weight: ex.weight, reps: ex.reps, date: w.date };
+        return { ex: ex, bodyweight: w.bodyweight, date: w.date };
       }
     }
   }
@@ -886,7 +1091,7 @@ function getMostRecentExercise(name, excludeId) {
 function getCurrentE1RMRecord(name, excludeId) {
   const hist = getExerciseHistory(name).filter(h => h.workoutId !== excludeId);
   if (hist.length === 0) return 0;
-  return Math.max(...hist.map(h => h.e1rm));
+  return Math.max(...hist.map(h => h.score));
 }
 
 // ============================================================
@@ -1004,7 +1209,7 @@ function getDefaultDraft() {
     date: todayISO(),
     duration: '',
     bodyweight: lastBW ? String(lastBW) : '',
-    exercises: [{ name: '', reps: '', weight: '' }]
+    exercises: [blankExercise()]
   };
 }
 
@@ -1019,11 +1224,20 @@ function renderLog() {
         date: w.date,
         duration: w.duration || '',
         bodyweight: w.bodyweight || '',
-        exercises: w.exercises.map(e => ({
-          name: e.name,
-          weight: String(e.weight),
-          reps: String(e.reps)
-        }))
+        exercises: w.exercises.map(e => {
+          const c = Object.assign({}, e);
+          if (e.type === 'cardio') {
+            c.distance = e.distance == null ? null : e.distance;
+            c.durationMin = e.durationMin == null ? null : e.durationMin;
+          } else if (e.type === 'bodyweight') {
+            c.reps = String(e.reps);
+          } else {
+            c.weight = String(e.weight);
+            c.reps = String(e.reps);
+            c.isMax = !!e.isMax;
+          }
+          return c;
+        })
       };
     } else {
       editingWorkoutId = null;
@@ -1084,7 +1298,7 @@ function renderLog() {
       exContainer.appendChild(buildExerciseRow(ex, idx, () => {
         logDraft.exercises.splice(idx, 1);
         if (logDraft.exercises.length === 0) {
-          logDraft.exercises.push({ name: '', reps: '', weight: '' });
+          logDraft.exercises.push(blankExercise());
         }
         saveDraft();
         renderExerciseList();
@@ -1097,7 +1311,7 @@ function renderLog() {
     el('button', {
       class: 'btn btn-secondary', type: 'button',
       onclick: () => {
-        logDraft.exercises.push({ name: '', reps: '', weight: '' });
+        logDraft.exercises.push(blankExercise());
         saveDraft();
         renderExerciseList();
       }
@@ -1129,40 +1343,28 @@ function renderLog() {
 }
 
 function buildExerciseRow(ex, idx, onRemove) {
+  normalizeExFields(ex);
   const row = el('div', { class: 'exercise-row' });
 
-  row.appendChild(el('button', {
-    type: 'button', class: 'rm-btn', 'aria-label': 'Remove exercise',
-    onclick: onRemove
-  }, '\u00D7'));
+  const rm = el('button', { type: 'button', class: 'rm-btn', 'aria-label': 'Remove exercise', onclick: onRemove });
+  rm.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  row.appendChild(rm);
 
+  // --- name + autocomplete ---
   const nameWrap = el('div', { class: 'name-wrap' });
   const nameInput = el('input', {
     class: 'name-input', type: 'text', placeholder: 'Exercise name',
-    value: ex.name || '', autocomplete: 'off', autocapitalize: 'words',
-    spellcheck: 'false'
+    value: ex.name || '', autocomplete: 'off', autocapitalize: 'words', spellcheck: 'false'
   });
   nameWrap.appendChild(nameInput);
-
   let acDropdown = null;
-  function hideAC() {
-    if (acDropdown) { acDropdown.remove(); acDropdown = null; }
-  }
-  function pickName(name) {
-    nameInput.value = name;
-    ex.name = name;
-    hideAC();
-    updateLastHint();
-    saveDraft();
-  }
+  function hideAC() { if (acDropdown) { acDropdown.remove(); acDropdown = null; } }
+  function pickName(name) { nameInput.value = name; ex.name = name; hideAC(); maybeAutoType(); updateLastHint(); saveDraft(); }
   function showAC() {
     hideAC();
     const q = (nameInput.value || '').trim().toLowerCase();
     if (!q) return;
-    const all = getAllExerciseNames();
-    const matches = all
-      .filter(n => n.toLowerCase().includes(q) && n.toLowerCase() !== q)
-      .slice(0, 5);
+    const matches = getAllExerciseNames().filter(n => n.toLowerCase().includes(q) && n.toLowerCase() !== q).slice(0, 5);
     if (matches.length === 0) return;
     acDropdown = el('div', { class: 'autocomplete' });
     matches.forEach(name => {
@@ -1173,59 +1375,121 @@ function buildExerciseRow(ex, idx, onRemove) {
     });
     nameWrap.appendChild(acDropdown);
   }
-
-  nameInput.addEventListener('input', () => {
-    ex.name = nameInput.value;
-    saveDraft();
-    showAC();
-    updateLastHint();
-  });
+  // If the user hasn't manually set a type, infer it from a known name (on blur / pick).
+  function maybeAutoType() {
+    if (ex._typeLocked || ex.type !== 'strength') return;
+    const guess = classifyName(ex.name);
+    if (guess !== 'strength') { ex.type = guess; normalizeExFields(ex); renderSeg(); renderFields(); }
+  }
+  nameInput.addEventListener('input', () => { ex.name = nameInput.value; saveDraft(); showAC(); updateLastHint(); });
   nameInput.addEventListener('focus', showAC);
-  nameInput.addEventListener('blur', () => setTimeout(hideAC, 180));
-
+  nameInput.addEventListener('blur', () => setTimeout(() => { hideAC(); maybeAutoType(); }, 180));
   row.appendChild(nameWrap);
 
+  // --- type selector ---
+  const seg = el('div', { class: 'type-seg' });
+  function renderSeg() {
+    seg.innerHTML = '';
+    [['strength', 'Lift'], ['bodyweight', 'Bodyweight'], ['cardio', 'Cardio']].forEach(pair => {
+      const t = pair[0], label = pair[1];
+      const b = el('button', {
+        type: 'button', 'data-t': t, class: (ex.type === t ? 'active' : ''),
+        onclick: () => {
+          if (ex.type === t) return;
+          ex.type = t; ex._typeLocked = true;
+          normalizeExFields(ex); renderSeg(); renderFields(); updateLastHint(); saveDraft();
+        }
+      }, label);
+      seg.appendChild(b);
+    });
+  }
+  renderSeg();
+  row.appendChild(seg);
+
+  // --- last hint (lift / bodyweight only) ---
   const lastHint = el('div', { class: 'last-hint' }, '');
   row.appendChild(lastHint);
-
   function updateLastHint() {
+    if (ex.type === 'cardio') { lastHint.textContent = ''; lastHint.classList.remove('pr-pending'); return; }
     const recent = getMostRecentExercise(ex.name, editingWorkoutId);
-    if (!recent) {
-      lastHint.textContent = '';
-      lastHint.classList.remove('pr-pending');
-      return;
-    }
+    if (!recent) { lastHint.textContent = ''; lastHint.classList.remove('pr-pending'); return; }
+    const r = recent.ex;
+    let txt;
+    if (r.type === 'bodyweight') txt = 'Last: ' + r.reps + ' reps' + (r.addedWeight ? ' +' + stripTrailing(r.addedWeight) + 'kg' : '');
+    else if (r.type === 'cardio') txt = '';
+    else txt = 'Last: ' + stripTrailing(r.weight) + ' kg \u00D7 ' + r.reps + (r.isMax ? ' (1RM)' : '');
     const currentBest = getCurrentE1RMRecord(ex.name, editingWorkoutId);
-    const w = parseFloat(ex.weight) || 0;
-    const r = parseInt(ex.reps, 10) || 0;
-    const prospective = epley(w, r);
-    const willPR = prospective > 0 && prospective > currentBest && w > 0 && r > 0;
-    const txt = 'Last: ' + stripTrailing(recent.weight) + ' kg \u00D7 ' + recent.reps;
-    if (willPR) {
-      lastHint.innerHTML = txt + '<span class="arrow">\u203A</span><span>PR INCOMING</span>';
-    } else {
-      lastHint.textContent = txt;
-    }
-    lastHint.classList.toggle('pr-pending', willPR);
+    const prospective = perfScore(ex, logDraft.bodyweight);
+    const willPR = prospective > 0 && prospective > currentBest;
+    if (txt && willPR) lastHint.innerHTML = txt + '<span class="arrow">\u203A</span><span>PR INCOMING</span>';
+    else lastHint.textContent = txt;
+    lastHint.classList.toggle('pr-pending', !!(txt && willPR));
   }
 
-  const stats = el('div', { class: 'exercise-stats' });
-  stats.appendChild(el('div', { class: 'field' }, [
-    el('label', null, 'Weight (kg)'),
-    makeNumberInput({
-      value: ex.weight, step: 2.5, min: 0, inputmode: 'decimal',
-      onChange: v => { ex.weight = v; saveDraft(); updateLastHint(); }
-    })
-  ]));
-  stats.appendChild(el('div', { class: 'field' }, [
-    el('label', null, 'Reps'),
-    makeNumberInput({
-      value: ex.reps, step: 1, min: 0, inputmode: 'numeric',
-      onChange: v => { ex.reps = v; saveDraft(); updateLastHint(); }
-    })
-  ]));
-  row.appendChild(stats);
-
+  // --- type-specific fields ---
+  const fieldsHost = el('div');
+  row.appendChild(fieldsHost);
+  function renderFields() {
+    fieldsHost.innerHTML = '';
+    if (ex.type === 'cardio') {
+      const grid = el('div', { class: 'exercise-stats' });
+      grid.appendChild(el('div', { class: 'field' }, [
+        el('label', null, 'Distance'),
+        makeNumberInput({
+          value: ex.distance == null ? '' : ex.distance, step: 0.5, min: 0, inputmode: 'decimal', placeholder: 'km',
+          onChange: v => { ex.distance = (v === '' ? null : parseFloat(v)); saveDraft(); updatePace(); }
+        })
+      ]));
+      const unitSel = el('select', { class: 'input', style: 'font-family:var(--font-body);font-weight:600;' });
+      ['km', 'mi', 'm'].forEach(u => { const o = el('option', { value: u }, u); if ((ex.distanceUnit || 'km') === u) o.setAttribute('selected', ''); unitSel.appendChild(o); });
+      unitSel.value = ex.distanceUnit || 'km';
+      unitSel.addEventListener('change', () => { ex.distanceUnit = unitSel.value; saveDraft(); updatePace(); });
+      grid.appendChild(el('div', { class: 'field' }, [el('label', null, 'Unit'), unitSel]));
+      fieldsHost.appendChild(grid);
+      fieldsHost.appendChild(el('div', { class: 'field', style: 'margin-top:10px;' }, [
+        el('label', null, 'Duration (min)'),
+        makeNumberInput({
+          value: ex.durationMin == null ? '' : ex.durationMin, step: 1, min: 0, inputmode: 'numeric', placeholder: 'min',
+          onChange: v => { ex.durationMin = (v === '' ? null : parseFloat(v)); saveDraft(); updatePace(); }
+        })
+      ]));
+      const pace = el('div', { class: 'last-hint', style: 'margin-top:10px;margin-bottom:0;' }, '');
+      fieldsHost.appendChild(pace);
+      var updatePace = function () { const p = fmtPace(ex.distance, ex.distanceUnit || 'km', ex.durationMin); pace.textContent = p ? ('Pace ' + p) : ''; };
+      updatePace();
+    } else if (ex.type === 'bodyweight') {
+      const grid = el('div', { class: 'exercise-stats' });
+      grid.appendChild(el('div', { class: 'field' }, [
+        el('label', null, 'Reps'),
+        makeNumberInput({ value: ex.reps, step: 1, min: 0, inputmode: 'numeric', onChange: v => { ex.reps = v; saveDraft(); updateLastHint(); } })
+      ]));
+      grid.appendChild(el('div', { class: 'field' }, [
+        el('label', null, 'Added wt (kg)'),
+        makeNumberInput({ value: ex.addedWeight == null ? '' : ex.addedWeight, step: 1, min: 0, inputmode: 'decimal', placeholder: '0', onChange: v => { ex.addedWeight = (v === '' ? 0 : parseFloat(v)); saveDraft(); updateLastHint(); } })
+      ]));
+      fieldsHost.appendChild(grid);
+      const bw = parseFloat(logDraft.bodyweight) || 0;
+      fieldsHost.appendChild(el('div', { class: 'last-hint', style: 'margin-top:8px;margin-bottom:0;' },
+        bw > 0 ? ('Logged at ' + stripTrailing(bw + (parseFloat(ex.addedWeight) || 0)) + ' kg effective') : 'Set bodyweight above to score this'));
+    } else {
+      const mt = el('div', { class: 'max-toggle' + (ex.isMax ? ' on' : '') });
+      mt.innerHTML = '<span class="box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span><span class="lab">Max attempt<small>1RM test \u2014 kept out of volume &amp; working line</small></span>';
+      const setMax = (val) => { ex.isMax = !!val; mt.classList.toggle('on', ex.isMax); saveDraft(); };
+      mt.addEventListener('click', () => setMax(!ex.isMax));
+      const grid = el('div', { class: 'exercise-stats' });
+      grid.appendChild(el('div', { class: 'field' }, [
+        el('label', null, 'Weight (kg)'),
+        makeNumberInput({ value: ex.weight, step: 2.5, min: 0, inputmode: 'decimal', onChange: v => { ex.weight = v; saveDraft(); updateLastHint(); } })
+      ]));
+      grid.appendChild(el('div', { class: 'field' }, [
+        el('label', null, 'Reps'),
+        makeNumberInput({ value: ex.reps, step: 1, min: 0, inputmode: 'numeric', onChange: v => { ex.reps = v; if (parseInt(v, 10) === 1) setMax(true); saveDraft(); updateLastHint(); } })
+      ]));
+      fieldsHost.appendChild(grid);
+      fieldsHost.appendChild(mt);
+    }
+  }
+  renderFields();
   updateLastHint();
   return row;
 }
@@ -1235,21 +1499,34 @@ function submitWorkout() {
     showToast('Pick a date');
     return;
   }
-  const cleaned = logDraft.exercises
-    .map(ex => ({
-      name: (ex.name || '').trim(),
-      weight: parseFloat(ex.weight) || 0,
-      reps: parseInt(ex.reps, 10) || 0
-    }))
-    .filter(ex => ex.name && ex.reps > 0);
+  const bodyweight = parseFloat(logDraft.bodyweight) || 0;
+  const cleaned = [];
+  for (const ex of logDraft.exercises) {
+    const name = (ex.name || '').trim();
+    if (!name) continue;
+    if (ex.type === 'cardio') {
+      const dist = (ex.distance == null || ex.distance === '') ? null : parseFloat(ex.distance);
+      const dur = (ex.durationMin == null || ex.durationMin === '') ? null : parseFloat(ex.durationMin);
+      if ((!dist || dist <= 0) && (!dur || dur <= 0)) continue;
+      cleaned.push({ type: 'cardio', name, distance: (dist && dist > 0) ? dist : null, distanceUnit: ex.distanceUnit || 'km', durationMin: (dur && dur > 0) ? dur : null });
+    } else if (ex.type === 'bodyweight') {
+      const reps = parseInt(ex.reps, 10) || 0;
+      if (reps <= 0) continue;
+      cleaned.push({ type: 'bodyweight', name, reps, addedWeight: parseFloat(ex.addedWeight) || 0 });
+    } else {
+      const reps = parseInt(ex.reps, 10) || 0;
+      const weight = parseFloat(ex.weight) || 0;
+      if (reps <= 0) continue;
+      cleaned.push({ type: 'strength', name, weight, reps, isMax: !!ex.isMax });
+    }
+  }
 
   if (cleaned.length === 0) {
-    showToast('Add at least one exercise with a name and reps');
+    showToast('Add an exercise with valid numbers');
     return;
   }
 
   const duration = parseFloat(logDraft.duration) || 0;
-  const bodyweight = parseFloat(logDraft.bodyweight) || 0;
 
   const workout = {
     id: editingWorkoutId || generateId(),
@@ -1262,8 +1539,9 @@ function submitWorkout() {
   let prCount = 0;
   if (!editingWorkoutId) {
     for (const ex of cleaned) {
+      if (ex.type === 'cardio') continue;
       const best = getCurrentE1RMRecord(ex.name);
-      if (epley(ex.weight, ex.reps) > best) prCount++;
+      if (perfScore(ex, bodyweight) > best) prCount++;
     }
   }
 
@@ -1324,32 +1602,75 @@ function renderHistory() {
   const prs = computePRs();
   const sorted = [...state.workouts].sort((a, b) => b.date.localeCompare(a.date));
 
-  for (const w of sorted) {
-    const item = el('div', { class: 'workout-item' });
-    item.addEventListener('click', () => route('detail', { id: w.id }));
+  // --- search ---
+  const searchWrap = el('div', { class: 'search-wrap' });
+  searchWrap.innerHTML = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
+  const searchInput = el('input', { class: 'search-input', type: 'text', placeholder: 'Search exercise or date\u2026', value: historyQuery, autocapitalize: 'none', autocomplete: 'off', spellcheck: 'false' });
+  searchWrap.appendChild(searchInput);
+  view.appendChild(searchWrap);
 
-    const top = el('div', { class: 'top' });
-    top.appendChild(el('div', { class: 'date' }, fmtDate(w.date)));
+  const listHost = el('div');
+  view.appendChild(listHost);
 
-    const metaParts = [];
-    if (w.duration) metaParts.push(w.duration + ' min');
-    if (w.bodyweight) metaParts.push(stripTrailing(w.bodyweight) + ' kg BW');
-    metaParts.push(w.exercises.length + ' ex');
-    top.appendChild(el('div', { class: 'meta' }, metaParts.join(' \u00B7 ')));
-    item.appendChild(top);
-
-    const exList = el('div', { class: 'exercises' });
-    w.exercises.forEach((ex, idx) => {
-      const isPR = !!(prs[w.id] && prs[w.id][idx]);
-      const pill = el('div', { class: 'exercise-pill' + (isPR ? ' has-pr' : '') });
-      pill.appendChild(document.createTextNode(ex.name));
-      pill.appendChild(el('span', { class: 'num' }, ' ' + stripTrailing(ex.weight) + '\u00D7' + ex.reps));
-      if (isPR) pill.appendChild(document.createTextNode(' \u2605'));
-      exList.appendChild(pill);
-    });
-    item.appendChild(exList);
-    view.appendChild(item);
+  function pill(ex, isPR) {
+    if (ex.type === 'cardio') {
+      const p = el('div', { class: 'exercise-pill cardio' });
+      p.appendChild(document.createTextNode(ex.name));
+      let detail = '';
+      if (ex.distance != null) detail = ' ' + stripTrailing(ex.distance) + (ex.distanceUnit || 'km');
+      else if (ex.durationMin != null) detail = ' ' + stripTrailing(ex.durationMin) + 'm';
+      if (detail) p.appendChild(el('span', { class: 'num' }, detail));
+      return p;
+    }
+    const p = el('div', { class: 'exercise-pill' + (isPR ? ' has-pr' : '') });
+    p.appendChild(document.createTextNode(ex.name));
+    if (ex.type === 'bodyweight') {
+      p.appendChild(el('span', { class: 'num' }, ' \u00D7' + ex.reps + (ex.addedWeight ? ' +' + stripTrailing(ex.addedWeight) + 'kg' : '')));
+    } else {
+      p.appendChild(el('span', { class: 'num' }, ' ' + stripTrailing(ex.weight) + '\u00D7' + ex.reps));
+    }
+    if (isPR) p.appendChild(document.createTextNode(' \u2605'));
+    return p;
   }
+
+  function matches(w, q) {
+    if (!q) return true;
+    if (fmtDate(w.date).toLowerCase().includes(q)) return true;
+    if ((w.date || '').includes(q)) return true;
+    return w.exercises.some(ex => (ex.name || '').toLowerCase().includes(q));
+  }
+
+  function renderList() {
+    listHost.innerHTML = '';
+    const q = historyQuery.trim().toLowerCase();
+    const rows = sorted.filter(w => matches(w, q));
+    if (rows.length === 0) {
+      listHost.appendChild(el('div', { class: 'empty', style: 'padding:48px 20px;' }, [
+        el('div', { class: 'big' }, 'No matches'),
+        el('div', { class: 'small' }, 'Try a different exercise or date.')
+      ]));
+      return;
+    }
+    for (const w of rows) {
+      const item = el('div', { class: 'workout-item' });
+      item.addEventListener('click', () => route('detail', { id: w.id }));
+      const top = el('div', { class: 'top' });
+      top.appendChild(el('div', { class: 'date' }, fmtDate(w.date)));
+      const metaParts = [];
+      if (w.duration) metaParts.push(w.duration + ' min');
+      if (w.bodyweight) metaParts.push(stripTrailing(w.bodyweight) + ' kg BW');
+      metaParts.push(w.exercises.length + ' ex');
+      top.appendChild(el('div', { class: 'meta' }, metaParts.join(' \u00B7 ')));
+      item.appendChild(top);
+      const exList = el('div', { class: 'exercises' });
+      w.exercises.forEach((ex, idx) => exList.appendChild(pill(ex, !!(prs[w.id] && prs[w.id][idx]))));
+      item.appendChild(exList);
+      listHost.appendChild(item);
+    }
+  }
+
+  searchInput.addEventListener('input', () => { historyQuery = searchInput.value; renderList(); });
+  renderList();
 
   app.appendChild(view);
 }
@@ -1374,13 +1695,14 @@ function renderDetail(id) {
 
   const prs = computePRs();
   const wprs = prs[w.id] || {};
-  const totalVolume = w.exercises.reduce((s, e) => s + e.weight * e.reps, 0);
+  const totalVolume = workoutVolume(w);
   const prCount = Object.keys(wprs).length;
+  const hasCardio = w.exercises.some(e => e.type === 'cardio');
 
   const statsCard = el('div', { class: 'card' });
   if (w.duration) statsCard.appendChild(makeDetailRow('Duration', w.duration + ' min'));
   if (w.bodyweight) statsCard.appendChild(makeDetailRow('Bodyweight', stripTrailing(w.bodyweight) + ' kg'));
-  statsCard.appendChild(makeDetailRow('Total volume', stripTrailing(totalVolume) + ' kg'));
+  if (totalVolume > 0) statsCard.appendChild(makeDetailRow('Working volume', stripTrailing(Math.round(totalVolume)) + ' kg'));
   statsCard.appendChild(makeDetailRow('Exercises', String(w.exercises.length)));
   if (prCount > 0) statsCard.appendChild(makeDetailRow('Personal records', prCount + ' \u2605'));
   view.appendChild(statsCard);
@@ -1389,16 +1711,32 @@ function renderDetail(id) {
   const exSection = el('div', { class: 'detail-section', style: 'margin-top: 0;' });
   w.exercises.forEach((ex, idx) => {
     const isPR = !!wprs[idx];
-    const e1 = epley(ex.weight, ex.reps);
-    const card = el('div', { class: 'detail-exercise' + (isPR ? ' has-pr' : '') });
+    const isCardio = ex.type === 'cardio';
+    const card = el('div', { class: 'detail-exercise' + (isPR ? ' has-pr' : '') + (isCardio ? ' cardio' : '') });
     const nameEl = el('div', { class: 'ex-name' });
+    if (isCardio) nameEl.appendChild(el('span', { class: 'kind-tag cardio' }, 'Cardio'));
+    else if (ex.type === 'bodyweight') nameEl.appendChild(el('span', { class: 'kind-tag bw' }, 'BW'));
+    else if (ex.isMax) nameEl.appendChild(el('span', { class: 'kind-tag max' }, '1RM'));
     nameEl.appendChild(document.createTextNode(ex.name));
     if (isPR) nameEl.appendChild(el('span', { class: 'pr-badge' }, 'PR'));
     card.appendChild(nameEl);
-    card.appendChild(el('div', { class: 'ex-stats' }, [
-      el('span', null, stripTrailing(ex.weight) + ' kg \u00D7 ' + ex.reps),
-      el('span', { class: 'e1rm' }, '\u00B7 est 1RM ' + stripTrailing(Math.round(e1 * 10) / 10) + ' kg')
-    ]));
+
+    const stats = el('div', { class: 'ex-stats' });
+    if (isCardio) {
+      const bits = [];
+      if (ex.distance != null) bits.push(stripTrailing(ex.distance) + ' ' + (ex.distanceUnit || 'km'));
+      if (ex.durationMin != null) bits.push(stripTrailing(ex.durationMin) + ' min');
+      stats.appendChild(el('span', null, bits.join(' \u00B7 ') || '\u2014'));
+      const pace = fmtPace(ex.distance, ex.distanceUnit || 'km', ex.durationMin);
+      if (pace) stats.appendChild(el('span', { class: 'e1rm' }, '\u00B7 ' + pace));
+    } else if (ex.type === 'bodyweight') {
+      const eff = exLoad(ex, w.bodyweight);
+      stats.appendChild(el('span', null, ex.reps + ' reps' + (ex.addedWeight ? ' +' + stripTrailing(ex.addedWeight) + ' kg' : '')));
+      if (eff > 0) stats.appendChild(el('span', { class: 'e1rm' }, '\u00B7 @ ' + stripTrailing(eff) + ' kg'));
+    } else {
+      stats.appendChild(el('span', null, stripTrailing(ex.weight) + ' kg \u00D7 ' + ex.reps + (ex.isMax ? '  (tested 1RM)' : '')));
+    }
+    card.appendChild(stats);
     exSection.appendChild(card);
   });
   view.appendChild(exSection);
@@ -1448,11 +1786,12 @@ function confirmDelete(id) {
 // ============================================================
 function renderProgress() {
   const app = document.getElementById('app');
+  app.innerHTML = '';
   const view = el('div', { class: 'view' });
 
   view.appendChild(el('div', { class: 'view-header' }, [
     el('h1', null, 'Progress'),
-    el('div', { class: 'subtitle' }, 'Per-exercise weight and est. 1RM')
+    el('div', { class: 'subtitle' }, 'Top set, strength trend & tested maxes')
   ]));
 
   const names = getAllExerciseNames().sort((a, b) => a.localeCompare(b));
@@ -1472,128 +1811,221 @@ function renderProgress() {
     progressSelectedExercise = names.find(n => normalizeName(n) === normalizeName(progressSelectedExercise));
   }
 
-  const picker = el('div', { class: 'exercise-picker' });
-  names.forEach(name => {
-    const btn = el('button', {
-      class: 'exercise-pill-btn' + (name === progressSelectedExercise ? ' active' : ''),
-      onclick: () => {
-        progressSelectedExercise = name;
-        renderProgress();
-      }
-    }, name);
-    picker.appendChild(btn);
-  });
-  view.appendChild(picker);
+  // search + exercise picker
+  const searchWrap = el('div', { class: 'search-wrap' });
+  searchWrap.innerHTML = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
+  const searchInput = el('input', { class: 'search-input', type: 'text', placeholder: 'Search a lift or exercise\u2026', value: progressQuery, autocapitalize: 'none', autocomplete: 'off', spellcheck: 'false' });
+  searchWrap.appendChild(searchInput);
+  view.appendChild(searchWrap);
+
+  const pickerHost = el('div');
+  view.appendChild(pickerHost);
+  function renderPicker() {
+    pickerHost.innerHTML = '';
+    const q = progressQuery.trim().toLowerCase();
+    const shown = names.filter(n => !q || n.toLowerCase().includes(q));
+    if (shown.length === 0) {
+      pickerHost.appendChild(el('div', { style: 'padding:2px 20px 14px;color:var(--text-3);font-size:13px;font-weight:500;' }, 'No exercise matches \u201C' + progressQuery.trim() + '\u201D'));
+      return;
+    }
+    const picker = el('div', { class: 'exercise-picker' });
+    shown.forEach(name => {
+      picker.appendChild(el('button', {
+        class: 'exercise-pill-btn' + (name === progressSelectedExercise ? ' active' : ''),
+        onclick: () => { progressSelectedExercise = name; renderProgress(); }
+      }, name));
+    });
+    pickerHost.appendChild(picker);
+  }
+  searchInput.addEventListener('input', () => { progressQuery = searchInput.value; renderPicker(); });
+  renderPicker();
 
   const history = getExerciseHistory(progressSelectedExercise);
-
   if (history.length === 0) {
-    view.appendChild(el('div', { class: 'empty' }, [
-      el('div', { class: 'big' }, 'No data')
-    ]));
+    view.appendChild(el('div', { class: 'empty' }, [el('div', { class: 'big' }, 'No data')]));
     app.appendChild(view);
     return;
   }
 
-  const maxW = Math.max(...history.map(h => h.weight));
-  const maxE1 = Math.max(...history.map(h => h.e1rm));
-  const sessions = history.length;
+  const isCardio = history.every(h => h.type === 'cardio');
+  const sessions = new Set(history.map(h => h.workoutId)).size;
+  const lastDate = fmtDateShort(history[history.length - 1].date);
 
-  view.appendChild(el('div', { class: 'stat-grid' }, [
-    el('div', { class: 'stat-card' }, [
-      el('div', { class: 'stat-value gold' }, [
-        document.createTextNode(stripTrailing(maxW)),
-        el('span', { class: 'unit' }, ' kg')
+  if (isCardio) {
+    const withDist = history.filter(h => h.distance != null);
+    const totalKm = withDist.reduce((s, h) => s + toKm(h.distance, h.distanceUnit), 0);
+    const totalMin = history.reduce((s, h) => s + (parseFloat(h.durationMin) || 0), 0);
+    view.appendChild(el('div', { class: 'stat-grid' }, [
+      el('div', { class: 'stat-card' }, [
+        el('div', { class: 'stat-value gold' }, withDist.length ? [document.createTextNode(stripTrailing(Math.round(totalKm * 10) / 10)), el('span', { class: 'unit' }, ' km')] : [document.createTextNode('\u2014')]),
+        el('div', { class: 'stat-label' }, 'Total distance')
       ]),
-      el('div', { class: 'stat-label' }, 'Heaviest')
-    ]),
-    el('div', { class: 'stat-card' }, [
-      el('div', { class: 'stat-value' }, [
-        document.createTextNode(stripTrailing(Math.round(maxE1 * 10) / 10)),
-        el('span', { class: 'unit' }, ' kg')
+      el('div', { class: 'stat-card' }, [
+        el('div', { class: 'stat-value' }, fmtDuration(totalMin)),
+        el('div', { class: 'stat-label' }, 'Total time')
+      ])
+    ]));
+    view.appendChild(el('div', { class: 'stat-grid' }, [
+      el('div', { class: 'stat-card' }, [el('div', { class: 'stat-value muted' }, String(sessions)), el('div', { class: 'stat-label' }, 'Sessions')]),
+      el('div', { class: 'stat-card' }, [el('div', { class: 'stat-value muted' }, lastDate), el('div', { class: 'stat-label' }, 'Last logged')])
+    ]));
+  } else {
+    const nonCardio = history.filter(h => h.type !== 'cardio');
+    const maxes = nonCardio.filter(h => h.isMax);
+    const heaviest = Math.max(0, ...nonCardio.map(h => h.load));
+    const testedMax = maxes.length ? Math.max(...maxes.map(h => h.load)) : null;
+    const prog = progressionSeries(history);
+    const progVals = prog.index.filter(v => v != null);
+    const gain = progVals.length ? Math.round((progVals[progVals.length - 1] - 100) * 10) / 10 : 0;
+
+    if (testedMax != null) {
+      const tCard = el('div', { class: 'card', style: 'display:flex;justify-content:space-between;align-items:center;gap:12px;' });
+      tCard.appendChild(el('div', {}, [
+        el('div', { style: 'font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);font-weight:700;' }, 'Tested 1RM'),
+        el('div', { style: 'font-size:12.5px;color:var(--text-2);margin-top:3px;' }, 'Best logged max-effort single')
+      ]));
+      tCard.appendChild(el('div', { style: 'font-family:var(--font-mono);font-weight:700;font-size:26px;color:var(--pr);' }, [document.createTextNode(stripTrailing(testedMax)), el('span', { style: 'font-size:13px;color:var(--text-3);font-weight:500;' }, ' kg')]));
+      view.appendChild(tCard);
+    }
+
+    view.appendChild(el('div', { class: 'stat-grid' }, [
+      el('div', { class: 'stat-card' }, [
+        el('div', { class: 'stat-value gold' }, [document.createTextNode(stripTrailing(heaviest)), el('span', { class: 'unit' }, ' kg')]),
+        el('div', { class: 'stat-label' }, 'Heaviest set')
       ]),
-      el('div', { class: 'stat-label' }, 'Best Est. 1RM')
-    ])
-  ]));
+      el('div', { class: 'stat-card' }, [
+        el('div', { class: 'stat-value' + (gain > 0 ? ' gold' : '') }, (gain >= 0 ? '+' : '') + gain + '%'),
+        el('div', { class: 'stat-label' }, 'Strength gain')
+      ])
+    ]));
+    view.appendChild(el('div', { class: 'stat-grid' }, [
+      el('div', { class: 'stat-card' }, [el('div', { class: 'stat-value muted' }, String(sessions)), el('div', { class: 'stat-label' }, 'Sessions')]),
+      el('div', { class: 'stat-card' }, [el('div', { class: 'stat-value muted' }, lastDate), el('div', { class: 'stat-label' }, 'Last logged')])
+    ]));
+  }
 
-  view.appendChild(el('div', { class: 'stat-grid' }, [
-    el('div', { class: 'stat-card' }, [
-      el('div', { class: 'stat-value muted' }, String(sessions)),
-      el('div', { class: 'stat-label' }, 'Sessions')
-    ]),
-    el('div', { class: 'stat-card' }, [
-      el('div', { class: 'stat-value muted' }, fmtDateShort(history[history.length - 1].date)),
-      el('div', { class: 'stat-label' }, 'Last logged')
-    ])
-  ]));
+  const charts = [];
+  function addChart(label, drawFn, caption) {
+    if (label) view.appendChild(el('div', { class: 'section-label' }, label));
+    const wrap = el('div', { class: 'chart-wrap short' });
+    const canvas = el('canvas');
+    wrap.appendChild(canvas);
+    view.appendChild(wrap);
+    if (caption) view.appendChild(el('div', { style: 'text-align:center;color:var(--text-3);font-size:11px;font-family:var(--font-mono);letter-spacing:0.03em;padding:0 16px 8px;margin-top:-4px;' }, caption));
+    charts.push(() => drawFn(canvas));
+  }
 
-  const chartWrap = el('div', { class: 'chart-wrap tall' });
-  const canvas = el('canvas');
-  chartWrap.appendChild(canvas);
-  view.appendChild(chartWrap);
+  if (isCardio) {
+    const c = history.filter(h => h.type === 'cardio');
+    if (c.some(h => h.distance != null)) addChart('DISTANCE (KM)', cv => drawCardioDistance(cv, history));
+    if (c.some(h => h.durationMin != null)) addChart('DURATION (MIN)', cv => drawCardioDuration(cv, history));
+  } else {
+    addChart('TOP SET (KG)', cv => drawTopSet(cv, history));
+    addChart('STRENGTH PROGRESSION', cv => drawStrengthProgression(cv, history), '100 = first session \u00B7 weight & reps combined');
+    addChart('REPS \u00B7 TOP SET', cv => drawReps(cv, history));
+  }
 
   app.appendChild(view);
 
   if (typeof Chart !== 'undefined') {
-    renderProgressChart(canvas, history);
+    charts.forEach(fn => fn());
   } else {
-    chartWrap.innerHTML = '<div style="text-align:center;color:var(--text-3);padding:80px 20px;font-size:13px;">Charts require an internet connection on first load.</div>';
+    view.querySelectorAll('.chart-wrap').forEach(wr => { wr.innerHTML = '<div style="text-align:center;color:var(--text-3);padding:54px 20px;font-size:13px;">Charts need an internet connection on first load.</div>'; });
   }
 }
 
-function renderProgressChart(canvas, history) {
-  const labels = history.map(h => fmtDateShort(h.date));
-  const weights = history.map(h => h.weight);
-  const e1rms = history.map(h => Math.round(h.e1rm * 10) / 10);
-  let bestSoFar = 0;
-  const prMask = history.map(h => {
-    if (h.e1rm > bestSoFar) { bestSoFar = h.e1rm; return true; }
-    return false;
+function liftSeries(history) {
+  const byDate = {};
+  history.forEach(h => {
+    if (h.type === 'cardio') return;
+    const d = h.date;
+    if (!byDate[d]) byDate[d] = { work: null, workReps: null, e1: null, max: null };
+    if (h.isMax) {
+      if (byDate[d].max == null || h.load > byDate[d].max) byDate[d].max = h.load;
+    } else {
+      const r = parseInt(h.reps, 10) || 0;
+      if (byDate[d].work == null || h.load > byDate[d].work || (h.load === byDate[d].work && r > (byDate[d].workReps || 0))) {
+        byDate[d].work = h.load; byDate[d].workReps = r;
+      }
+      if (byDate[d].e1 == null || h.e1rm > byDate[d].e1) byDate[d].e1 = h.e1rm;
+    }
   });
-  const prPoints = history.map((h, i) => prMask[i] ? h.weight : null);
+  const dates = Object.keys(byDate).sort();
+  return {
+    labels: dates.map(fmtDateShort),
+    work: dates.map(d => byDate[d].work),
+    reps: dates.map(d => byDate[d].workReps),
+    e1: dates.map(d => byDate[d].e1 == null ? null : Math.round(byDate[d].e1 * 10) / 10),
+    maxP: dates.map(d => byDate[d].max)
+  };
+}
 
-  new Chart(canvas, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: 'Weight (kg)',
-          data: weights,
-          borderColor: '#fafaf9',
-          backgroundColor: 'rgba(250, 250, 249, 0.06)',
-          borderWidth: 2,
-          tension: 0.25,
-          fill: true,
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          pointBackgroundColor: '#fafaf9',
-          pointBorderWidth: 0
-        },
-        {
-          label: 'Est. 1RM',
-          data: e1rms,
-          borderColor: 'rgba(250, 250, 249, 0.45)',
-          borderDash: [4, 4],
-          borderWidth: 1.5,
-          pointRadius: 0,
-          tension: 0.25,
-          fill: false
-        },
-        {
-          label: 'PR',
-          data: prPoints,
-          showLine: false,
-          pointRadius: 7,
-          pointHoverRadius: 9,
-          pointBackgroundColor: '#fbbf24',
-          pointBorderColor: '#0a0a0b',
-          pointBorderWidth: 2.5
-        }
-      ]
-    },
-    options: chartOptions()
+function drawTopSet(canvas, history) {
+  const s = liftSeries(history);
+  const ds = [{ label: 'Top set (kg)', data: s.work, borderColor: '#FF6A2B', backgroundColor: 'rgba(255,106,43,0.10)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 4, pointHoverRadius: 6, pointBackgroundColor: '#FF6A2B', pointBorderWidth: 0, spanGaps: true }];
+  if (s.maxP.some(v => v != null)) ds.push({ label: 'Tested 1RM', data: s.maxP, showLine: false, pointRadius: 7, pointHoverRadius: 9, pointStyle: 'rectRot', pointBackgroundColor: '#FFB23E', pointBorderColor: '#141110', pointBorderWidth: 2.5, spanGaps: true });
+  new Chart(canvas, { type: 'line', data: { labels: s.labels, datasets: ds }, options: chartOptions() });
+}
+
+function progressionSeries(history) {
+  const byDate = {};
+  history.forEach(h => {
+    if (h.type === 'cardio') return;
+    const sc = h.score || 0;
+    if (sc <= 0) return;
+    const d = h.date;
+    if (!byDate[d]) byDate[d] = { work: null, any: null };
+    byDate[d].any = Math.max(byDate[d].any || 0, sc);
+    if (!h.isMax) byDate[d].work = Math.max(byDate[d].work || 0, sc);
   });
+  const dates = Object.keys(byDate).sort();
+  const hasWork = dates.some(d => byDate[d].work != null);
+  const pick = d => hasWork ? byDate[d].work : byDate[d].any;
+  let firstScore = null;
+  for (const d of dates) { const v = pick(d); if (v != null && v > 0) { firstScore = v; break; } }
+  return {
+    labels: dates.map(fmtDateShort),
+    index: dates.map(d => { const v = pick(d); return (v != null && firstScore) ? Math.round((100 * v / firstScore) * 10) / 10 : null; })
+  };
+}
+
+function drawStrengthProgression(canvas, history) {
+  const s = progressionSeries(history);
+  const base = s.labels.map(() => 100);
+  new Chart(canvas, { type: 'line', data: { labels: s.labels, datasets: [
+    { label: 'Strength', data: s.index, borderColor: '#FF6A2B', backgroundColor: 'rgba(255,106,43,0.10)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#FF6A2B', pointBorderWidth: 0, spanGaps: true },
+    { label: 'Baseline (100)', data: base, borderColor: 'rgba(237,230,222,0.3)', borderDash: [4, 4], borderWidth: 1.5, pointRadius: 0, fill: false }
+  ] }, options: chartOptions() });
+}
+
+function drawReps(canvas, history) {
+  const s = liftSeries(history);
+  const o = chartOptions();
+  o.scales.y = Object.assign({}, o.scales.y, { beginAtZero: true });
+  o.scales.y.ticks = Object.assign({}, o.scales.y.ticks, { precision: 0 });
+  new Chart(canvas, { type: 'line', data: { labels: s.labels, datasets: [
+    { label: 'Reps', data: s.reps, borderColor: '#6FA8C7', backgroundColor: 'rgba(111,168,199,0.10)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#6FA8C7', pointBorderWidth: 0, spanGaps: true }
+  ] }, options: o });
+}
+
+function drawCardioDistance(canvas, history) {
+  const c = history.filter(h => h.type === 'cardio').sort((a, b) => a.date.localeCompare(b.date));
+  const labels = c.map(h => fmtDateShort(h.date));
+  const dist = c.map(h => h.distance == null ? null : Math.round(toKm(h.distance, h.distanceUnit) * 100) / 100);
+  new Chart(canvas, { type: 'line', data: { labels, datasets: [
+    { label: 'Distance (km)', data: dist, borderColor: '#6FA8C7', backgroundColor: 'rgba(111,168,199,0.12)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 4, pointHoverRadius: 6, pointBackgroundColor: '#6FA8C7', pointBorderWidth: 0, spanGaps: true }
+  ] }, options: chartOptions() });
+}
+
+function drawCardioDuration(canvas, history) {
+  const c = history.filter(h => h.type === 'cardio').sort((a, b) => a.date.localeCompare(b.date));
+  const labels = c.map(h => fmtDateShort(h.date));
+  const dur = c.map(h => h.durationMin == null ? null : parseFloat(h.durationMin));
+  const o = chartOptions();
+  o.scales.y = Object.assign({}, o.scales.y, { beginAtZero: true });
+  new Chart(canvas, { type: 'line', data: { labels, datasets: [
+    { label: 'Duration (min)', data: dur, borderColor: '#EDE6DE', backgroundColor: 'rgba(237,230,222,0.06)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#EDE6DE', pointBorderWidth: 0, spanGaps: true }
+  ] }, options: o });
 }
 
 function chartOptions(extra) {
@@ -1604,7 +2036,7 @@ function chartOptions(extra) {
     plugins: {
       legend: {
         labels: {
-          color: '#9ca0a6',
+          color: '#9A8F84',
           font: { family: 'Manrope', size: 11, weight: '600' },
           boxWidth: 12,
           boxHeight: 8,
@@ -1613,10 +2045,10 @@ function chartOptions(extra) {
         }
       },
       tooltip: {
-        backgroundColor: '#1a1b1e',
-        titleColor: '#fafaf9',
-        bodyColor: '#9ca0a6',
-        borderColor: '#3a3b40',
+        backgroundColor: '#272220',
+        titleColor: '#EDE6DE',
+        bodyColor: '#9A8F84',
+        borderColor: '#4A4039',
         borderWidth: 1,
         padding: 10,
         cornerRadius: 8,
@@ -1627,7 +2059,7 @@ function chartOptions(extra) {
     scales: {
       x: {
         ticks: {
-          color: '#5c5f64',
+          color: '#6B625B',
           font: { family: 'JetBrains Mono', size: 10 },
           maxRotation: 0,
           autoSkipPadding: 12
@@ -1636,7 +2068,7 @@ function chartOptions(extra) {
       },
       y: {
         ticks: {
-          color: '#5c5f64',
+          color: '#6B625B',
           font: { family: 'JetBrains Mono', size: 11 }
         },
         grid: { color: 'rgba(255,255,255,0.04)' }
@@ -1663,6 +2095,9 @@ function renderStats() {
   const target = state.settings.weeklyTarget;
   const totalSessions = state.workouts.length;
   const dsl = getDaysSinceLastWorkout();
+  const totalMin = state.workouts.reduce((s, w) => s + (parseFloat(w.duration) || 0), 0);
+  const totalVol = state.workouts.reduce((s, w) => s + workoutVolume(w), 0);
+  const volWorkouts = state.workouts.filter(w => workoutVolume(w) > 0);
 
   view.appendChild(el('div', { class: 'stat-grid' }, [
     el('div', { class: 'stat-card' }, [
@@ -1686,6 +2121,19 @@ function renderStats() {
     ])
   ]));
 
+  view.appendChild(el('div', { class: 'stat-grid' }, [
+    el('div', { class: 'stat-card' }, [
+      el('div', { class: 'stat-value' }, fmtDuration(totalMin)),
+      el('div', { class: 'stat-label' }, 'Time trained')
+    ]),
+    el('div', { class: 'stat-card' }, [
+      el('div', { class: 'stat-value' }, totalVol >= 1000
+        ? [document.createTextNode((Math.round(totalVol / 100) / 10).toString()), el('span', { class: 'unit' }, 'k kg')]
+        : [document.createTextNode(stripTrailing(Math.round(totalVol))), el('span', { class: 'unit' }, ' kg')]),
+      el('div', { class: 'stat-label' }, 'Total volume')
+    ])
+  ]));
+
   // Weekly target setter
   const targetCard = el('div', { class: 'card' });
   const targetRow = el('div', { class: 'target-row' }, [
@@ -1705,17 +2153,44 @@ function renderStats() {
           if (stat) stat.textContent = getCurrentWeekCount() + '/' + n;
           const streakStat = document.querySelectorAll('.stat-value')[0];
           if (streakStat) streakStat.textContent = String(getWeeklyStreak());
+          wkFill.style.width = Math.min(100, n ? (getCurrentWeekCount() / n) * 100 : 0) + '%';
         }
       }
     })
   ]);
+  const wkBar = el('div', { class: 'wk-bar' });
+  const wkFill = el('div', { class: 'fill', style: 'width:' + Math.min(100, target ? (weekCount / target) * 100 : 0) + '%' });
+  wkBar.appendChild(wkFill);
   targetCard.appendChild(targetRow);
+  targetCard.appendChild(wkBar);
   view.appendChild(targetCard);
 
-  // Volume chart
+  // Strength index (overall progression)
+  const siSeries = strengthIndexSeries();
+  let siCanvas = null;
+  if (siSeries.length >= 2) {
+    const firstV = siSeries[0].index, lastV = siSeries[siSeries.length - 1].index;
+    const overall = Math.round((lastV - firstV) * 10) / 10;
+    const perSession = Math.round(((Math.pow(lastV / firstV, 1 / (siSeries.length - 1)) - 1) * 100) * 10) / 10;
+    view.appendChild(el('div', { class: 'section-label' }, 'STRENGTH INDEX'));
+    const sumCard = el('div', { class: 'card', style: 'display:flex;justify-content:space-between;align-items:center;gap:12px;' });
+    sumCard.appendChild(el('div', {}, [
+      el('div', { style: 'font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);font-weight:700;' }, (overall >= 0 ? '+' : '') + overall + '% since first session'),
+      el('div', { style: 'font-size:12.5px;color:var(--text-2);margin-top:3px;' }, 'Avg ' + (perSession >= 0 ? '+' : '') + perSession + '%/session across all lifts')
+    ]));
+    sumCard.appendChild(el('div', { style: 'font-family:var(--font-mono);font-weight:700;font-size:26px;color:var(--ember);' }, String(lastV)));
+    view.appendChild(sumCard);
+    const siWrap = el('div', { class: 'chart-wrap short' });
+    siCanvas = el('canvas');
+    siWrap.appendChild(siCanvas);
+    view.appendChild(siWrap);
+    view.appendChild(el('div', { style: 'text-align:center;color:var(--text-3);font-size:11px;font-family:var(--font-mono);letter-spacing:0.03em;padding:0 16px 8px;margin-top:-4px;' }, '100 = first session \u00B7 each point averages how every lift moved vs its last time'));
+  }
+
+  // Volume chart (working volume only: excludes cardio & 1RM singles)
   let volCanvas = null;
-  if (state.workouts.length > 0) {
-    view.appendChild(el('div', { class: 'section-label' }, 'VOLUME PER SESSION'));
+  if (volWorkouts.length > 0) {
+    view.appendChild(el('div', { class: 'section-label' }, 'WORKING VOLUME PER SESSION'));
     const volWrap = el('div', { class: 'chart-wrap' });
     volCanvas = el('canvas');
     volWrap.appendChild(volCanvas);
@@ -1731,6 +2206,24 @@ function renderStats() {
     bwCanvas = el('canvas');
     bwWrap.appendChild(bwCanvas);
     view.appendChild(bwWrap);
+  }
+
+  // Cardio summary
+  const cardio = cardioSummary();
+  if (cardio.length) {
+    view.appendChild(el('div', { class: 'section-label' }, 'CARDIO'));
+    const cc = el('div', { class: 'card' });
+    cardio.forEach(c => {
+      const bits = [];
+      if (c.hasDist) bits.push(stripTrailing(Math.round(c.distKm * 10) / 10) + ' km');
+      if (c.time > 0) bits.push(fmtDuration(c.time));
+      bits.push(c.sessions + '\u00D7');
+      cc.appendChild(el('div', { class: 'cardio-row' }, [
+        el('div', { class: 'nm' }, c.name),
+        el('div', { class: 'val' }, bits.join('  \u00B7  '))
+      ]));
+    });
+    view.appendChild(cc);
   }
 
   // Backup
@@ -1753,23 +2246,40 @@ function renderStats() {
 
   view.appendChild(el('div', {
     style: 'text-align: center; color: var(--text-3); font-size: 11px; padding: 24px 16px 12px; font-family: var(--font-mono); letter-spacing: 0.08em;'
-  }, 'FORGE \u00B7 v1'));
+  }, 'FORGE \u00B7 v2'));
 
   app.appendChild(view);
 
   // Charts after attached
   if (typeof Chart === 'undefined') return;
 
+  if (siCanvas) {
+    const labels = siSeries.map(p => fmtDateShort(p.date));
+    const data = siSeries.map(p => p.index);
+    const base100 = siSeries.map(() => 100);
+    new Chart(siCanvas, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          { label: 'Strength index', data: data, borderColor: '#FF6A2B', backgroundColor: 'rgba(255,106,43,0.10)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#FF6A2B', pointBorderWidth: 0 },
+          { label: 'Baseline (100)', data: base100, borderColor: 'rgba(237,230,222,0.3)', borderDash: [4, 4], borderWidth: 1.5, pointRadius: 0, fill: false }
+        ]
+      },
+      options: chartOptions()
+    });
+  }
+
   if (volCanvas) {
-    const sorted = [...state.workouts].sort((a, b) => a.date.localeCompare(b.date)).slice(-20);
+    const sorted = [...volWorkouts].sort((a, b) => a.date.localeCompare(b.date)).slice(-20);
     new Chart(volCanvas, {
       type: 'bar',
       data: {
         labels: sorted.map(w => fmtDateShort(w.date)),
         datasets: [{
-          label: 'Volume (kg)',
-          data: sorted.map(w => w.exercises.reduce((s, e) => s + e.weight * e.reps, 0)),
-          backgroundColor: '#fafaf9',
+          label: 'Working volume (kg)',
+          data: sorted.map(w => Math.round(workoutVolume(w))),
+          backgroundColor: '#FF6A2B',
           borderRadius: 4,
           maxBarThickness: 22
         }]
@@ -1778,10 +2288,10 @@ function renderStats() {
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: '#1a1b1e',
-            titleColor: '#fafaf9',
-            bodyColor: '#9ca0a6',
-            borderColor: '#3a3b40',
+            backgroundColor: '#272220',
+            titleColor: '#EDE6DE',
+            bodyColor: '#9A8F84',
+            borderColor: '#4A4039',
             borderWidth: 1,
             padding: 10,
             cornerRadius: 8
@@ -1799,13 +2309,13 @@ function renderStats() {
         datasets: [{
           label: 'Bodyweight (kg)',
           data: bwData.map(w => w.bodyweight),
-          borderColor: '#fafaf9',
-          backgroundColor: 'rgba(250,250,249,0.06)',
+          borderColor: '#FFB23E',
+          backgroundColor: 'rgba(255,178,62,0.08)',
           borderWidth: 2,
           tension: 0.3,
           fill: true,
           pointRadius: 3,
-          pointBackgroundColor: '#fafaf9',
+          pointBackgroundColor: '#FFB23E',
           pointBorderWidth: 0
         }]
       },
@@ -1813,10 +2323,10 @@ function renderStats() {
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: '#1a1b1e',
-            titleColor: '#fafaf9',
-            bodyColor: '#9ca0a6',
-            borderColor: '#3a3b40',
+            backgroundColor: '#272220',
+            titleColor: '#EDE6DE',
+            bodyColor: '#9A8F84',
+            borderColor: '#4A4039',
             borderWidth: 1,
             padding: 10,
             cornerRadius: 8
@@ -1860,7 +2370,7 @@ function importData() {
         primaryClass: 'btn-primary',
         onPrimary: () => {
           state = {
-            workouts: parsed.workouts,
+            workouts: migrateWorkouts(parsed.workouts),
             settings: Object.assign({ weeklyTarget: 3 }, parsed.settings || {})
           };
           saveState();
@@ -1949,7 +2459,7 @@ function confetti() {
   ctx.scale(dpr, dpr);
 
   const particles = [];
-  const colors = ['#fbbf24', '#fafaf9', '#fde68a', '#facc15'];
+  const colors = ['#FF6A2B', '#FFB23E', '#FFD9A0', '#EDE6DE'];
   const cx = window.innerWidth / 2;
   const cy = window.innerHeight * 0.42;
   for (let i = 0; i < 90; i++) {
