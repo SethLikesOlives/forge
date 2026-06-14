@@ -2,7 +2,7 @@
 // On first online load, all core files + the Chart.js CDN + Google Fonts are
 // cached. After that, the app works fully offline.
 
-const CACHE_NAME = 'forge-v5';
+const CACHE_NAME = 'forge-v7';
 const CORE_ASSETS = [
   './',
   './index.html',

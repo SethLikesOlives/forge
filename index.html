@@ -657,11 +657,12 @@ input[type=number] { -moz-appearance: textfield; }
 /* --- exercise type selector --- */
 .type-seg { display:flex; gap:6px; margin-bottom:12px; }
 .type-seg button { flex:1; background:var(--bg); border:1px solid var(--border); color:var(--text-3);
-  font-family:var(--font-body); font-weight:700; font-size:11.5px; letter-spacing:0.04em;
-  padding:9px 4px; border-radius:9px; cursor:pointer; text-transform:uppercase; transition:all .15s; touch-action:manipulation; }
+  font-family:var(--font-body); font-weight:700; font-size:10.5px; letter-spacing:0.02em;
+  padding:9px 3px; border-radius:9px; cursor:pointer; text-transform:uppercase; transition:all .15s; touch-action:manipulation; }
 .type-seg button.active { color:var(--text); border-color:var(--border-strong); background:var(--card); }
 .type-seg button[data-t="strength"].active { color:var(--ember); border-color:rgba(255,106,43,.5); }
 .type-seg button[data-t="cardio"].active { color:var(--steel); border-color:rgba(111,168,199,.5); }
+.type-seg button[data-t="timed"].active { color:var(--pr); border-color:rgba(255,178,62,.5); }
 
 /* --- max-attempt toggle --- */
 .max-toggle { display:flex; align-items:center; gap:10px; margin-top:10px; padding:10px 12px;
@@ -685,13 +686,54 @@ input[type=number] { -moz-appearance: textfield; }
 .search-input:focus { border-color:var(--border-strong); }
 .search-input::placeholder { color:var(--text-3); }
 
+/* --- searchable exercise dropdown --- */
+.ex-combo { margin: 0 16px 16px; }
+.ex-combo-trigger { width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  background:var(--card); border:1px solid var(--border); color:var(--text);
+  font-family:var(--font-display); font-weight:600; font-size:18px; letter-spacing:-0.01em;
+  padding:13px 16px; border-radius:14px; cursor:pointer; -webkit-appearance:none; text-align:left; }
+.ex-combo-trigger:active { background:var(--card-2); }
+.ex-combo-trigger .cur { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.ex-combo-trigger .chev { flex-shrink:0; color:var(--text-3); display:flex; }
+.combo-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.6); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  z-index:210; display:flex; align-items:flex-end; animation:fadein 0.2s; }
+.combo-panel { background:var(--card); border-top-left-radius:24px; border-top-right-radius:24px; border-top:1px solid var(--border-strong);
+  width:100%; max-width:600px; margin:0 auto; padding:10px 16px calc(12px + var(--safe-bottom)); max-height:78vh;
+  display:flex; flex-direction:column; animation:slideup 0.28s cubic-bezier(0.2,0.85,0.3,1); }
+.combo-grip { width:40px; height:4px; background:var(--border-strong); border-radius:2px; margin:0 auto 12px; flex-shrink:0; }
+.combo-search { width:100%; background:var(--card-2); border:1px solid var(--border); color:var(--text);
+  font-family:var(--font-body); font-size:16px; font-weight:500; padding:12px 14px; border-radius:12px; outline:none; -webkit-appearance:none;
+  margin-bottom:8px; flex-shrink:0; }
+.combo-search:focus { border-color:var(--border-strong); }
+.combo-search::placeholder { color:var(--text-3); }
+.combo-list { overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.combo-list::-webkit-scrollbar { display:none; }
+.combo-item { width:100%; text-align:left; background:transparent; border:none; border-bottom:1px solid var(--border);
+  color:var(--text); font-family:var(--font-body); font-size:16px; font-weight:500; padding:15px 4px; cursor:pointer; }
+.combo-item:last-child { border-bottom:none; }
+.combo-item.active { color:var(--ember); font-weight:700; }
+.combo-item:active { background:var(--card-2); }
+.combo-empty { padding:22px 4px; color:var(--text-3); font-size:14px; }
+
+/* --- "more graphs" select --- */
+.more-select { width:calc(100% - 32px); margin:20px 16px 4px; background:var(--card); border:1px solid var(--border); color:var(--text);
+  font-family:var(--font-body); font-size:15px; font-weight:600; padding:13px 14px; border-radius:12px; outline:none; -webkit-appearance:none; cursor:pointer;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236B625B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");
+  background-repeat:no-repeat; background-position:right 14px center; padding-right:40px; }
+.more-select:focus { border-color:var(--border-strong); }
+.more-host { margin-top:4px; }
+.more-note { margin:8px 16px 0; padding:18px; background:var(--card); border:1px solid var(--border); border-radius:12px;
+  color:var(--text-2); font-size:13.5px; line-height:1.5; text-align:center; }
+
 /* --- kind tags --- */
 .kind-tag { font-family:var(--font-mono); font-size:9px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
   padding:2px 6px; border-radius:5px; margin-right:6px; vertical-align:middle; border:1px solid; }
 .kind-tag.cardio { color:var(--steel); border-color:rgba(111,168,199,.4); background:rgba(111,168,199,.08); }
 .kind-tag.bw { color:var(--text-2); border-color:var(--border-strong); }
 .kind-tag.max { color:var(--pr); border-color:rgba(255,178,62,.45); background:rgba(255,178,62,.1); }
+.kind-tag.timed { color:var(--pr); border-color:rgba(255,178,62,.45); background:rgba(255,178,62,.1); }
 .exercise-pill.cardio { background:rgba(111,168,199,.08); color:var(--steel); border-color:rgba(111,168,199,.28); }
+.exercise-pill.timed { background:rgba(255,178,62,.07); color:var(--pr); border-color:rgba(255,178,62,.26); }
 .detail-exercise.cardio { border-color:rgba(111,168,199,.3); background:linear-gradient(180deg, rgba(111,168,199,.05), transparent); }
 
 /* --- weekly target progress --- */
@@ -730,6 +772,7 @@ let editingWorkoutId = null;
 let logDraft = null;
 let progressSelectedExercise = null;
 let progressQuery = '';
+let progressMore = '';
 let historyQuery = '';
 
 // ============================================================
@@ -848,6 +891,7 @@ const CARDIO_NAMES = new Set(['bike','run','running','cycling','cycle','canoe','
 function classifyName(name) {
   const n = (name || '').trim().toLowerCase();
   if (CARDIO_NAMES.has(n)) return 'cardio';
+  if (/(plank|wall[\s-]?sit|dead[\s-]?hang|hollow[\s-]?(hold|body)|l[\s-]?sit|side[\s-]?plank|superman|isometric|static hold)/.test(n)) return 'timed';
   if (/(pull[\s-]?up|chin[\s-]?up|push[\s-]?up|\bdips?\b|leg raise|knee raise|hanging|muscle[\s-]?up)/.test(n)) return 'bodyweight';
   return 'strength';
 }
@@ -856,6 +900,7 @@ function migrateExercise(ex, sessionDuration) {
   if (ex && ex.type) return ex;
   const t = classifyName(ex.name);
   if (t === 'cardio') return { type: 'cardio', name: ex.name, distance: null, distanceUnit: 'km', durationMin: (sessionDuration || null) };
+  if (t === 'timed') return { type: 'timed', name: ex.name, durationSec: parseInt(ex.durationSec, 10) || 0, addedWeight: parseFloat(ex.addedWeight) || 0 };
   if (t === 'bodyweight') return { type: 'bodyweight', name: ex.name, reps: parseInt(ex.reps, 10) || 0, addedWeight: 0 };
   return { type: 'strength', name: ex.name, weight: parseFloat(ex.weight) || 0, reps: parseInt(ex.reps, 10) || 0, isMax: (parseInt(ex.reps, 10) === 1) };
 }
@@ -870,6 +915,9 @@ function normalizeExFields(ex) {
     if (ex.distance === undefined) ex.distance = null;
     if (!ex.distanceUnit) ex.distanceUnit = 'km';
     if (ex.durationMin === undefined) ex.durationMin = null;
+  } else if (ex.type === 'timed') {
+    if (ex.durationSec === undefined || ex.durationSec === null) ex.durationSec = '';
+    if (ex.addedWeight === undefined || ex.addedWeight === null) ex.addedWeight = 0;
   } else if (ex.type === 'bodyweight') {
     if (ex.addedWeight === undefined || ex.addedWeight === null) ex.addedWeight = 0;
     if (ex.reps === undefined) ex.reps = '';
@@ -884,11 +932,12 @@ function blankExercise() { return { type: 'strength', name: '', reps: '', weight
 // Effective load for ranking + e1RM. Cardio -> 0. Bodyweight -> bodyweight + added.
 function exLoad(ex, bodyweight) {
   if (!ex || ex.type === 'cardio') return 0;
+  if (ex.type === 'timed') return parseFloat(ex.addedWeight) || 0;
   if (ex.type === 'bodyweight') return (parseFloat(bodyweight) || 0) + (parseFloat(ex.addedWeight) || 0);
   return parseFloat(ex.weight) || 0;
 }
 function exE1RM(ex, bodyweight) {
-  if (!ex || ex.type === 'cardio') return 0;
+  if (!ex || ex.type === 'cardio' || ex.type === 'timed') return 0;
   const load = exLoad(ex, bodyweight);
   const reps = parseInt(ex.reps, 10) || 0;
   if (load <= 0 || reps <= 0) return 0;
@@ -897,18 +946,24 @@ function exE1RM(ex, bodyweight) {
 }
 // Performance score for progression + PR detection (arbitrary units, NOT a kg 1RM claim).
 // Uncapped weight*(1+reps/30): rising load OR rising reps both increase it.
+// Holds: seconds held, lightly boosted by any added weight (a longer / heavier hold scores higher).
 function perfScore(ex, bodyweight) {
   if (!ex || ex.type === 'cardio') return 0;
+  if (ex.type === 'timed') {
+    const sec = parseInt(ex.durationSec, 10) || 0;
+    if (sec <= 0) return 0;
+    return sec * (1 + (parseFloat(ex.addedWeight) || 0) / 50);
+  }
   const load = exLoad(ex, bodyweight);
   const reps = parseInt(ex.reps, 10) || 0;
   if (load <= 0 || reps <= 0) return 0;
   return load * (1 + reps / 30);
 }
-// Working volume: strength (non-max) + bodyweight. Excludes cardio and 1RM singles.
+// Working volume: strength (non-max) + bodyweight. Excludes cardio, holds and 1RM singles.
 function workoutVolume(w) {
   let v = 0;
   for (const ex of (w.exercises || [])) {
-    if (ex.type === 'cardio') continue;
+    if (ex.type === 'cardio' || ex.type === 'timed') continue;
     if (ex.type === 'strength' && ex.isMax) continue;
     v += exLoad(ex, w.bodyweight) * (parseInt(ex.reps, 10) || 0);
   }
@@ -931,6 +986,12 @@ function fmtDuration(totalMin) {
   const t = Math.round(parseFloat(totalMin) || 0);
   const h = Math.floor(t / 60), m = t % 60;
   return h > 0 ? (h + 'h ' + m + 'm') : (m + 'm');
+}
+// Hold time: seconds -> "M:SS" once past a minute, else "Ns".
+function fmtHoldTime(sec) {
+  const s = Math.round(parseFloat(sec) || 0);
+  if (s < 60) return s + 's';
+  return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
 }
 function cardioSummary() {
   const map = {};
@@ -1047,6 +1108,8 @@ function getExerciseHistory(name) {
           distance: ex.distance,
           distanceUnit: ex.distanceUnit,
           durationMin: ex.durationMin,
+          durationSec: ex.durationSec,
+          addedWeight: ex.addedWeight,
           workoutId: w.id,
           idx
         });
@@ -1390,7 +1453,7 @@ function buildExerciseRow(ex, idx, onRemove) {
   const seg = el('div', { class: 'type-seg' });
   function renderSeg() {
     seg.innerHTML = '';
-    [['strength', 'Lift'], ['bodyweight', 'Bodyweight'], ['cardio', 'Cardio']].forEach(pair => {
+    [['strength', 'Lift'], ['bodyweight', 'Bodyweight'], ['cardio', 'Cardio'], ['timed', 'Hold']].forEach(pair => {
       const t = pair[0], label = pair[1];
       const b = el('button', {
         type: 'button', 'data-t': t, class: (ex.type === t ? 'active' : ''),
@@ -1417,6 +1480,7 @@ function buildExerciseRow(ex, idx, onRemove) {
     let txt;
     if (r.type === 'bodyweight') txt = 'Last: ' + r.reps + ' reps' + (r.addedWeight ? ' +' + stripTrailing(r.addedWeight) + 'kg' : '');
     else if (r.type === 'cardio') txt = '';
+    else if (r.type === 'timed') txt = 'Last: ' + fmtHoldTime(r.durationSec) + (r.addedWeight ? ' +' + stripTrailing(r.addedWeight) + 'kg' : '');
     else txt = 'Last: ' + stripTrailing(r.weight) + ' kg \u00D7 ' + r.reps + (r.isMax ? ' (1RM)' : '');
     const currentBest = getCurrentE1RMRecord(ex.name, editingWorkoutId);
     const prospective = perfScore(ex, logDraft.bodyweight);
@@ -1431,7 +1495,35 @@ function buildExerciseRow(ex, idx, onRemove) {
   row.appendChild(fieldsHost);
   function renderFields() {
     fieldsHost.innerHTML = '';
-    if (ex.type === 'cardio') {
+    if (ex.type === 'timed') {
+      const total = parseInt(ex.durationSec, 10) || 0;
+      let curMin = total ? Math.floor(total / 60) : 0;
+      let curSec = total ? (total % 60) : 0;
+      const holdHint = el('div', { class: 'last-hint', style: 'margin-top:10px;margin-bottom:0;' }, '');
+      const refresh = () => {
+        ex.durationSec = (curMin * 60 + curSec) || '';
+        holdHint.textContent = (curMin * 60 + curSec) > 0
+          ? ('Hold: ' + fmtHoldTime(curMin * 60 + curSec) + ((parseFloat(ex.addedWeight) || 0) ? ' \u00B7 +' + stripTrailing(ex.addedWeight) + ' kg' : ''))
+          : '';
+        saveDraft(); updateLastHint();
+      };
+      const grid = el('div', { class: 'exercise-stats' });
+      grid.appendChild(el('div', { class: 'field' }, [
+        el('label', null, 'Minutes'),
+        makeNumberInput({ value: total ? curMin : '', step: 1, min: 0, inputmode: 'numeric', placeholder: '0', onChange: v => { curMin = parseInt(v, 10) || 0; refresh(); } })
+      ]));
+      grid.appendChild(el('div', { class: 'field' }, [
+        el('label', null, 'Seconds'),
+        makeNumberInput({ value: total ? curSec : '', step: 5, min: 0, inputmode: 'numeric', placeholder: '0', onChange: v => { curSec = parseInt(v, 10) || 0; refresh(); } })
+      ]));
+      fieldsHost.appendChild(grid);
+      fieldsHost.appendChild(el('div', { class: 'field', style: 'margin-top:10px;' }, [
+        el('label', null, 'Added wt (kg) \u00B7 optional'),
+        makeNumberInput({ value: (ex.addedWeight == null || ex.addedWeight === 0) ? '' : ex.addedWeight, step: 1, min: 0, inputmode: 'decimal', placeholder: '0', onChange: v => { ex.addedWeight = (v === '' ? 0 : parseFloat(v)); refresh(); } })
+      ]));
+      fieldsHost.appendChild(holdHint);
+      refresh();
+    } else if (ex.type === 'cardio') {
       const grid = el('div', { class: 'exercise-stats' });
       grid.appendChild(el('div', { class: 'field' }, [
         el('label', null, 'Distance'),
@@ -1504,7 +1596,11 @@ function submitWorkout() {
   for (const ex of logDraft.exercises) {
     const name = (ex.name || '').trim();
     if (!name) continue;
-    if (ex.type === 'cardio') {
+    if (ex.type === 'timed') {
+      const sec = parseInt(ex.durationSec, 10) || 0;
+      if (sec <= 0) continue;
+      cleaned.push({ type: 'timed', name, durationSec: sec, addedWeight: parseFloat(ex.addedWeight) || 0 });
+    } else if (ex.type === 'cardio') {
       const dist = (ex.distance == null || ex.distance === '') ? null : parseFloat(ex.distance);
       const dur = (ex.durationMin == null || ex.durationMin === '') ? null : parseFloat(ex.durationMin);
       if ((!dist || dist <= 0) && (!dur || dur <= 0)) continue;
@@ -1622,6 +1718,13 @@ function renderHistory() {
       if (detail) p.appendChild(el('span', { class: 'num' }, detail));
       return p;
     }
+    if (ex.type === 'timed') {
+      const p = el('div', { class: 'exercise-pill timed' + (isPR ? ' has-pr' : '') });
+      p.appendChild(document.createTextNode(ex.name));
+      p.appendChild(el('span', { class: 'num' }, ' ' + fmtHoldTime(ex.durationSec) + (ex.addedWeight ? ' +' + stripTrailing(ex.addedWeight) + 'kg' : '')));
+      if (isPR) p.appendChild(document.createTextNode(' \u2605'));
+      return p;
+    }
     const p = el('div', { class: 'exercise-pill' + (isPR ? ' has-pr' : '') });
     p.appendChild(document.createTextNode(ex.name));
     if (ex.type === 'bodyweight') {
@@ -1715,6 +1818,7 @@ function renderDetail(id) {
     const card = el('div', { class: 'detail-exercise' + (isPR ? ' has-pr' : '') + (isCardio ? ' cardio' : '') });
     const nameEl = el('div', { class: 'ex-name' });
     if (isCardio) nameEl.appendChild(el('span', { class: 'kind-tag cardio' }, 'Cardio'));
+    else if (ex.type === 'timed') nameEl.appendChild(el('span', { class: 'kind-tag timed' }, 'Hold'));
     else if (ex.type === 'bodyweight') nameEl.appendChild(el('span', { class: 'kind-tag bw' }, 'BW'));
     else if (ex.isMax) nameEl.appendChild(el('span', { class: 'kind-tag max' }, '1RM'));
     nameEl.appendChild(document.createTextNode(ex.name));
@@ -1729,6 +1833,9 @@ function renderDetail(id) {
       stats.appendChild(el('span', null, bits.join(' \u00B7 ') || '\u2014'));
       const pace = fmtPace(ex.distance, ex.distanceUnit || 'km', ex.durationMin);
       if (pace) stats.appendChild(el('span', { class: 'e1rm' }, '\u00B7 ' + pace));
+    } else if (ex.type === 'timed') {
+      stats.appendChild(el('span', null, fmtHoldTime(ex.durationSec) + ' hold'));
+      if (ex.addedWeight) stats.appendChild(el('span', { class: 'e1rm' }, '\u00B7 +' + stripTrailing(ex.addedWeight) + ' kg'));
     } else if (ex.type === 'bodyweight') {
       const eff = exLoad(ex, w.bodyweight);
       stats.appendChild(el('span', null, ex.reps + ' reps' + (ex.addedWeight ? ' +' + stripTrailing(ex.addedWeight) + ' kg' : '')));
@@ -1784,6 +1891,49 @@ function confirmDelete(id) {
 // ============================================================
 // PROGRESS VIEW
 // ============================================================
+// Searchable dropdown: tap to open a bottom sheet with a filter box + scrollable list.
+function exerciseCombo(currentName, names, onPick) {
+  const wrap = el('div', { class: 'ex-combo' });
+  const trigger = el('button', { class: 'ex-combo-trigger', type: 'button' });
+  trigger.appendChild(el('span', { class: 'cur' }, currentName));
+  trigger.appendChild(el('span', { class: 'chev', html: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>' }));
+
+  let backdrop = null;
+  function close() { if (backdrop) { backdrop.remove(); backdrop = null; } }
+  function open() {
+    backdrop = el('div', { class: 'combo-backdrop' });
+    const panel = el('div', { class: 'combo-panel' });
+    const grip = el('div', { class: 'combo-grip' });
+    const search = el('input', { class: 'combo-search', type: 'text', placeholder: 'Search exercises\u2026', autocapitalize: 'none', autocomplete: 'off', spellcheck: 'false' });
+    const list = el('div', { class: 'combo-list' });
+    function renderList() {
+      list.innerHTML = '';
+      const q = search.value.trim().toLowerCase();
+      const shown = names.filter(n => !q || n.toLowerCase().includes(q));
+      if (!shown.length) { list.appendChild(el('div', { class: 'combo-empty' }, 'No match')); return; }
+      shown.forEach(n => {
+        list.appendChild(el('button', {
+          type: 'button',
+          class: 'combo-item' + (n === currentName ? ' active' : ''),
+          onclick: () => { close(); onPick(n); }
+        }, n));
+      });
+    }
+    search.addEventListener('input', renderList);
+    panel.appendChild(grip);
+    panel.appendChild(search);
+    panel.appendChild(list);
+    backdrop.appendChild(panel);
+    backdrop.addEventListener('click', e => { if (e.target === backdrop) close(); });
+    document.body.appendChild(backdrop);
+    renderList();
+    setTimeout(() => { try { search.focus(); } catch (e) {} }, 60);
+  }
+  trigger.addEventListener('click', open);
+  wrap.appendChild(trigger);
+  return wrap;
+}
+
 function renderProgress() {
   const app = document.getElementById('app');
   app.innerHTML = '';
@@ -1805,40 +1955,20 @@ function renderProgress() {
     return;
   }
 
+  // Default to the most recent exercise (not alphabetical)
   if (!progressSelectedExercise || !names.some(n => normalizeName(n) === normalizeName(progressSelectedExercise))) {
-    progressSelectedExercise = names[0];
+    const recent = [...state.workouts].sort((a, b) => b.date.localeCompare(a.date) || (b.id || '').localeCompare(a.id || ''))[0];
+    const def = recent && recent.exercises && recent.exercises[0] ? recent.exercises[0].name : names[0];
+    progressSelectedExercise = names.find(n => normalizeName(n) === normalizeName(def)) || names[0];
   } else {
     progressSelectedExercise = names.find(n => normalizeName(n) === normalizeName(progressSelectedExercise));
   }
 
-  // search + exercise picker
-  const searchWrap = el('div', { class: 'search-wrap' });
-  searchWrap.innerHTML = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>';
-  const searchInput = el('input', { class: 'search-input', type: 'text', placeholder: 'Search a lift or exercise\u2026', value: progressQuery, autocapitalize: 'none', autocomplete: 'off', spellcheck: 'false' });
-  searchWrap.appendChild(searchInput);
-  view.appendChild(searchWrap);
-
-  const pickerHost = el('div');
-  view.appendChild(pickerHost);
-  function renderPicker() {
-    pickerHost.innerHTML = '';
-    const q = progressQuery.trim().toLowerCase();
-    const shown = names.filter(n => !q || n.toLowerCase().includes(q));
-    if (shown.length === 0) {
-      pickerHost.appendChild(el('div', { style: 'padding:2px 20px 14px;color:var(--text-3);font-size:13px;font-weight:500;' }, 'No exercise matches \u201C' + progressQuery.trim() + '\u201D'));
-      return;
-    }
-    const picker = el('div', { class: 'exercise-picker' });
-    shown.forEach(name => {
-      picker.appendChild(el('button', {
-        class: 'exercise-pill-btn' + (name === progressSelectedExercise ? ' active' : ''),
-        onclick: () => { progressSelectedExercise = name; renderProgress(); }
-      }, name));
-    });
-    pickerHost.appendChild(picker);
-  }
-  searchInput.addEventListener('input', () => { progressQuery = searchInput.value; renderPicker(); });
-  renderPicker();
+  // searchable dropdown selector
+  view.appendChild(exerciseCombo(progressSelectedExercise, names, function (name) {
+    progressSelectedExercise = name;
+    renderProgress();
+  }));
 
   const history = getExerciseHistory(progressSelectedExercise);
   if (history.length === 0) {
@@ -1848,6 +1978,7 @@ function renderProgress() {
   }
 
   const isCardio = history.every(h => h.type === 'cardio');
+  const isTimed = history.every(h => h.type === 'timed');
   const sessions = new Set(history.map(h => h.workoutId)).size;
   const lastDate = fmtDateShort(history[history.length - 1].date);
 
@@ -1863,6 +1994,25 @@ function renderProgress() {
       el('div', { class: 'stat-card' }, [
         el('div', { class: 'stat-value' }, fmtDuration(totalMin)),
         el('div', { class: 'stat-label' }, 'Total time')
+      ])
+    ]));
+    view.appendChild(el('div', { class: 'stat-grid' }, [
+      el('div', { class: 'stat-card' }, [el('div', { class: 'stat-value muted' }, String(sessions)), el('div', { class: 'stat-label' }, 'Sessions')]),
+      el('div', { class: 'stat-card' }, [el('div', { class: 'stat-value muted' }, lastDate), el('div', { class: 'stat-label' }, 'Last logged')])
+    ]));
+  } else if (isTimed) {
+    const best = Math.max(0, ...history.map(h => parseInt(h.durationSec, 10) || 0));
+    const prog = progressionSeries(history);
+    const progVals = prog.index.filter(v => v != null);
+    const gain = progVals.length ? Math.round((progVals[progVals.length - 1] - 100) * 10) / 10 : 0;
+    view.appendChild(el('div', { class: 'stat-grid' }, [
+      el('div', { class: 'stat-card' }, [
+        el('div', { class: 'stat-value gold' }, fmtHoldTime(best)),
+        el('div', { class: 'stat-label' }, 'Best hold')
+      ]),
+      el('div', { class: 'stat-card' }, [
+        el('div', { class: 'stat-value' + (gain > 0 ? ' gold' : '') }, (gain >= 0 ? '+' : '') + gain + '%'),
+        el('div', { class: 'stat-label' }, 'Hold progress')
       ])
     ]));
     view.appendChild(el('div', { class: 'stat-grid' }, [
@@ -1915,15 +2065,64 @@ function renderProgress() {
     charts.push(() => drawFn(canvas));
   }
 
+  // primary charts (always shown), in priority order
   if (isCardio) {
     const c = history.filter(h => h.type === 'cardio');
     if (c.some(h => h.distance != null)) addChart('DISTANCE (KM)', cv => drawCardioDistance(cv, history));
     if (c.some(h => h.durationMin != null)) addChart('DURATION (MIN)', cv => drawCardioDuration(cv, history));
+  } else if (isTimed) {
+    addChart('HOLD TIME', cv => drawHoldTime(cv, history), 'Longest hold each session');
   } else {
-    addChart('TOP SET (KG)', cv => drawTopSet(cv, history));
     addChart('STRENGTH PROGRESSION', cv => drawStrengthProgression(cv, history), '100 = first session \u00B7 weight & reps combined');
-    addChart('REPS \u00B7 TOP SET', cv => drawReps(cv, history));
+    addChart('MAX WEIGHT MOVED', cv => drawTopSet(cv, history));
   }
+
+  // "More graphs" dropdown — secondary views on demand
+  const hasAddedLoad = isTimed && history.some(h => (parseFloat(h.addedWeight) || 0) > 0);
+  const moreOptions = isCardio
+    ? [{ key: 'pace', label: 'Pace (min/km)' }, { key: 'frequency', label: 'Training frequency' }]
+    : isTimed
+      ? (hasAddedLoad ? [{ key: 'addedload', label: 'Added load (kg)' }, { key: 'frequency', label: 'Training frequency' }] : [{ key: 'frequency', label: 'Training frequency' }])
+      : [{ key: 'reps', label: 'Reps (top set)' }, { key: 'volume', label: 'Session volume' }, { key: 'intensity', label: 'Relative intensity' }, { key: 'frequency', label: 'Training frequency' }];
+  if (!moreOptions.some(o => o.key === progressMore)) progressMore = '';
+
+  const moreSel = el('select', { class: 'more-select' });
+  moreSel.appendChild(el('option', { value: '' }, 'More graphs\u2026'));
+  moreOptions.forEach(o => {
+    const opt = el('option', { value: o.key }, o.label);
+    if (o.key === progressMore) opt.selected = true;
+    moreSel.appendChild(opt);
+  });
+  const moreHost = el('div', { class: 'more-host' });
+  const drawers = {
+    reps: cv => drawReps(cv, history),
+    volume: cv => drawSessionVolume(cv, history),
+    intensity: cv => drawIntensity(cv, history),
+    frequency: cv => drawFrequency(cv, history),
+    pace: cv => drawPace(cv, history),
+    addedload: cv => drawAddedLoad(cv, history)
+  };
+  function showMore(key) {
+    moreHost.innerHTML = '';
+    if (!key || !drawers[key]) return;
+    if (key === 'intensity' && !history.some(h => h.isMax)) {
+      moreHost.appendChild(el('div', { class: 'more-note' }, 'Log a 1-rep max test for this lift to see your working sets as a % of it.'));
+      return;
+    }
+    if (key === 'pace' && !history.some(h => h.type === 'cardio' && h.distance != null && h.durationMin != null)) {
+      moreHost.appendChild(el('div', { class: 'more-note' }, 'Needs sessions logged with both distance and time.'));
+      return;
+    }
+    const wrap = el('div', { class: 'chart-wrap short' });
+    const canvas = el('canvas');
+    wrap.appendChild(canvas);
+    moreHost.appendChild(wrap);
+    if (typeof Chart !== 'undefined') drawers[key](canvas);
+    else wrap.innerHTML = '<div style="text-align:center;color:var(--text-3);padding:54px 20px;font-size:13px;">Charts need an internet connection on first load.</div>';
+  }
+  moreSel.addEventListener('change', () => { progressMore = moreSel.value; showMore(progressMore); });
+  view.appendChild(moreSel);
+  view.appendChild(moreHost);
 
   app.appendChild(view);
 
@@ -1932,6 +2131,7 @@ function renderProgress() {
   } else {
     view.querySelectorAll('.chart-wrap').forEach(wr => { wr.innerHTML = '<div style="text-align:center;color:var(--text-3);padding:54px 20px;font-size:13px;">Charts need an internet connection on first load.</div>'; });
   }
+  showMore(progressMore);
 }
 
 function liftSeries(history) {
@@ -1962,7 +2162,7 @@ function liftSeries(history) {
 
 function drawTopSet(canvas, history) {
   const s = liftSeries(history);
-  const ds = [{ label: 'Top set (kg)', data: s.work, borderColor: '#FF6A2B', backgroundColor: 'rgba(255,106,43,0.10)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 4, pointHoverRadius: 6, pointBackgroundColor: '#FF6A2B', pointBorderWidth: 0, spanGaps: true }];
+  const ds = [{ label: 'Max weight (kg)', data: s.work, borderColor: '#FF6A2B', backgroundColor: 'rgba(255,106,43,0.10)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 4, pointHoverRadius: 6, pointBackgroundColor: '#FF6A2B', pointBorderWidth: 0, spanGaps: true }];
   if (s.maxP.some(v => v != null)) ds.push({ label: 'Tested 1RM', data: s.maxP, showLine: false, pointRadius: 7, pointHoverRadius: 9, pointStyle: 'rectRot', pointBackgroundColor: '#FFB23E', pointBorderColor: '#141110', pointBorderWidth: 2.5, spanGaps: true });
   new Chart(canvas, { type: 'line', data: { labels: s.labels, datasets: ds }, options: chartOptions() });
 }
@@ -2025,6 +2225,121 @@ function drawCardioDuration(canvas, history) {
   o.scales.y = Object.assign({}, o.scales.y, { beginAtZero: true });
   new Chart(canvas, { type: 'line', data: { labels, datasets: [
     { label: 'Duration (min)', data: dur, borderColor: '#EDE6DE', backgroundColor: 'rgba(237,230,222,0.06)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#EDE6DE', pointBorderWidth: 0, spanGaps: true }
+  ] }, options: o });
+}
+
+// Total work for this lift per session: sum of working sets' weight x reps (excludes 1RM tests).
+function drawSessionVolume(canvas, history) {
+  const byDate = {};
+  history.forEach(h => {
+    if (h.type === 'cardio' || h.isMax) return;
+    const v = (h.load || 0) * (parseInt(h.reps, 10) || 0);
+    if (v <= 0) return;
+    byDate[h.date] = (byDate[h.date] || 0) + v;
+  });
+  const dates = Object.keys(byDate).sort();
+  const labels = dates.map(fmtDateShort);
+  const data = dates.map(d => Math.round(byDate[d]));
+  const o = chartOptions();
+  o.scales.y = Object.assign({}, o.scales.y, { beginAtZero: true });
+  new Chart(canvas, { type: 'bar', data: { labels, datasets: [
+    { label: 'Volume (kg)', data, backgroundColor: 'rgba(255,106,43,0.55)', borderColor: '#FF6A2B', borderWidth: 1.5, borderRadius: 4, maxBarThickness: 46 }
+  ] }, options: o });
+}
+
+// Top working set as a % of your best tested 1RM.
+function drawIntensity(canvas, history) {
+  const maxes = history.filter(h => h.isMax).map(h => h.load).filter(v => v > 0);
+  const tested = maxes.length ? Math.max(...maxes) : null;
+  const byDate = {};
+  history.forEach(h => {
+    if (h.type === 'cardio' || h.isMax) return;
+    if (!(h.load > 0)) return;
+    if (byDate[h.date] == null || h.load > byDate[h.date]) byDate[h.date] = h.load;
+  });
+  const dates = Object.keys(byDate).sort();
+  const labels = dates.map(fmtDateShort);
+  const data = dates.map(d => tested ? Math.round((byDate[d] / tested) * 1000) / 10 : null);
+  const o = chartOptions();
+  o.scales.y = Object.assign({}, o.scales.y, { beginAtZero: true, suggestedMax: 100 });
+  o.scales.y.ticks = Object.assign({}, o.scales.y.ticks, { callback: v => v + '%' });
+  new Chart(canvas, { type: 'line', data: { labels, datasets: [
+    { label: '% of tested 1RM', data, borderColor: '#FFB23E', backgroundColor: 'rgba(255,178,62,0.10)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 3, pointHoverRadius: 5, pointBackgroundColor: '#FFB23E', pointBorderWidth: 0, spanGaps: true }
+  ] }, options: o });
+}
+
+// How many sessions per week included this exercise.
+function drawFrequency(canvas, history) {
+  const weeks = {};
+  history.forEach(h => {
+    const k = mondayKey(h.date);
+    if (!weeks[k]) weeks[k] = new Set();
+    weeks[k].add(h.workoutId);
+  });
+  const keys = Object.keys(weeks).sort();
+  const labels = keys.map(k => fmtDateShort(k));
+  const data = keys.map(k => weeks[k].size);
+  const o = chartOptions();
+  o.scales.y = Object.assign({}, o.scales.y, { beginAtZero: true });
+  o.scales.y.ticks = Object.assign({}, o.scales.y.ticks, { precision: 0 });
+  new Chart(canvas, { type: 'bar', data: { labels, datasets: [
+    { label: 'Sessions / week', data, backgroundColor: 'rgba(111,168,199,0.55)', borderColor: '#6FA8C7', borderWidth: 1.5, borderRadius: 4, maxBarThickness: 46 }
+  ] }, options: o });
+}
+
+// Cardio pace (min/km) per session — lower is faster.
+function drawPace(canvas, history) {
+  const c = history.filter(h => h.type === 'cardio' && h.distance != null && h.durationMin != null)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const labels = c.map(h => fmtDateShort(h.date));
+  const data = c.map(h => {
+    const km = toKm(h.distance, h.distanceUnit), m = parseFloat(h.durationMin) || 0;
+    return km > 0 && m > 0 ? Math.round((m / km) * 100) / 100 : null;
+  });
+  new Chart(canvas, { type: 'line', data: { labels, datasets: [
+    { label: 'Pace (min/km)', data, borderColor: '#6FA8C7', backgroundColor: 'rgba(111,168,199,0.10)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 4, pointHoverRadius: 6, pointBackgroundColor: '#6FA8C7', pointBorderWidth: 0, spanGaps: true }
+  ] }, options: chartOptions() });
+}
+
+// Longest hold each session (seconds), axis + tooltip formatted as M:SS.
+function drawHoldTime(canvas, history) {
+  const byDate = {};
+  history.forEach(h => {
+    if (h.type !== 'timed') return;
+    const s = parseInt(h.durationSec, 10) || 0;
+    if (s <= 0) return;
+    if (byDate[h.date] == null || s > byDate[h.date]) byDate[h.date] = s;
+  });
+  const dates = Object.keys(byDate).sort();
+  const labels = dates.map(fmtDateShort);
+  const data = dates.map(d => byDate[d]);
+  const o = chartOptions();
+  o.scales.y = Object.assign({}, o.scales.y, { beginAtZero: true });
+  o.scales.y.ticks = Object.assign({}, o.scales.y.ticks, { callback: v => fmtHoldTime(v) });
+  o.plugins = Object.assign({}, o.plugins);
+  o.plugins.tooltip = Object.assign({}, o.plugins.tooltip, { callbacks: { label: ctx => ' ' + fmtHoldTime(ctx.parsed.y) } });
+  new Chart(canvas, { type: 'line', data: { labels, datasets: [
+    { label: 'Hold time', data, borderColor: '#FFB23E', backgroundColor: 'rgba(255,178,62,0.12)', borderWidth: 2, tension: 0.25, fill: true, pointRadius: 4, pointHoverRadius: 6, pointBackgroundColor: '#FFB23E', pointBorderWidth: 0, spanGaps: true }
+  ] }, options: o });
+}
+
+// Heaviest added load per session for weighted holds.
+function drawAddedLoad(canvas, history) {
+  const byDate = {};
+  history.forEach(h => {
+    if (h.type !== 'timed') return;
+    const s = parseInt(h.durationSec, 10) || 0;
+    if (s <= 0) return;
+    const wt = parseFloat(h.addedWeight) || 0;
+    if (byDate[h.date] == null || wt > byDate[h.date]) byDate[h.date] = wt;
+  });
+  const dates = Object.keys(byDate).sort();
+  const labels = dates.map(fmtDateShort);
+  const data = dates.map(d => byDate[d]);
+  const o = chartOptions();
+  o.scales.y = Object.assign({}, o.scales.y, { beginAtZero: true });
+  new Chart(canvas, { type: 'bar', data: { labels, datasets: [
+    { label: 'Added load (kg)', data, backgroundColor: 'rgba(255,178,62,0.5)', borderColor: '#FFB23E', borderWidth: 1.5, borderRadius: 4, maxBarThickness: 46 }
   ] }, options: o });
 }
 
